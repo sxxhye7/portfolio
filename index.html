@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 리터러시의 이해 - 포트폴리오</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;400;700&display=swap');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 20px rgba(96, 165, 250, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(244, 114, 182, 0.15));
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        .assignment-num {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="blob"></div>
+
+    <!-- Header Section -->
+    <header class="max-w-7xl mx-auto px-6 pt-24 pb-16 text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+            Understanding <br>
+            <span class="gradient-text">AI Literacy</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            데이터를 읽고, 생성형 AI로 해석하며, 현실 세계의 문제를 <br class="hidden md:block">
+            의미 있는 가치로 전환하는 10단계의 여정을 기록합니다.
+        </p>
+        <div class="mt-12 flex justify-center gap-4">
+            <span class="px-4 py-2 rounded-full glass-card text-sm font-medium">#GenAI</span>
+            <span class="px-4 py-2 rounded-full glass-card text-sm font-medium">#DataAnalysis</span>
+            <span class="px-4 py-2 rounded-full glass-card text-sm font-medium">#Ethics</span>
+        </div>
+    </header>
+
+    <!-- Main Grid Section -->
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="assignment-grid">
+            <!-- Cards will be injected by JS -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12 text-center text-slate-500">
+        <p>© 2024 AI Literacy Portfolio. Created for "AI 리터러시의 이해"</p>
+    </footer>
+
+    <script>
+        const assignments = [
+            { id: 1, title: "AI의 기본 원리와 데이터 이해", icon: "fa-brain", tag: "Basic", desc: "머신러닝의 작동 방식과 데이터 구조를 탐색합니다." },
+            { id: 2, title: "현실 문제 데이터 수집", icon: "fa-database", tag: "Data", desc: "해결하고 싶은 현실의 문제를 정의하고 데이터를 확보합니다." },
+            { id: 3, title: "데이터 시각화와 패턴 발견", icon: "fa-chart-line", tag: "Analysis", desc: "수집된 데이터 속의 숨겨진 의미를 시각적으로 분석합니다." },
+            { id: 4, title: "생성형 AI 프롬프트 엔지니어링", icon: "fa-wand-magic-sparkles", tag: "GenAI", desc: "LLM과의 대화를 최적화하여 원하는 결과를 도출합니다." },
+            { id: 5, title: "멀티모달 AI를 활용한 이미지 생성", icon: "fa-image", tag: "GenAI", desc: "텍스트를 넘어 시각적 요소를 AI로 구현해봅니다." },
+            { id: 6, title: "AI 기반 스토리텔링", icon: "fa-pen-nib", tag: "Content", desc: "분석된 데이터를 서사로 풀어내어 콘텐츠화합니다." },
+            { id: 7, title: "AI 모델의 편향성과 한계 분석", icon: "fa-scale-unbalanced", tag: "Ethics", desc: "AI가 가질 수 있는 사회적 편견과 기술적 한계를 비판합니다." },
+            { id: 8, title: "AI 활용 윤리 가이드라인", icon: "fa-shield-halved", tag: "Ethics", desc: "올바르고 책임감 있는 AI 활용 원칙을 수립합니다." },
+            { id: 9, title: "데이터 분석 기반 문제해결 제안", icon: "fa-lightbulb", tag: "Solution", desc: "최종 프로젝트를 위한 핵심 솔루션을 제안합니다." },
+            { id: 10, title: "AI 리터러시 최종 포트폴리오", icon: "fa-trophy", tag: "Final", desc: "한 학기 동안의 성장을 집대성한 결과물입니다." }
+        ];
+
+        const grid = document.getElementById('assignment-grid');
+
+        assignments.forEach(task => {
+            const card = document.createElement('div');
+            card.className = 'glass-card p-8 rounded-3xl flex flex-col justify-between cursor-pointer';
+            card.innerHTML = `
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="assignment-num">Assignment ${task.id.toString().padStart(2, '0')}</span>
+                        <i class="fa-solid ${task.icon} text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 leading-tight group-hover:text-blue-400 transition-colors">
+                        ${task.title}
+                    </h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        ${task.desc}
+                    </p>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-[10px] px-2 py-1 rounded bg-blue-500/20 text-blue-300 font-bold uppercase tracking-wider">
+                        ${task.tag}
+                    </span>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
