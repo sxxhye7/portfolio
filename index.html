@@ -139,15 +139,23 @@
                 title: "AI의 이해", 
                 desc: "구글 노트북LM을 활용한 실습:<br>AI의 개념과 역사, 생성형 AI에 대한 자료 정리", 
                 icon: "fa-microchip", 
-                color: "text-[#8fa183]" 
+                color: "text-[#8fa183]",
+                hasButton: true,
+                link: "./03/ai의이해.html" 
             },
-            { id: 2, title: "프롬프트 연구", desc: "효과적인 결과를 위한 기법을 연구합니다.", icon: "fa-terminal", color: "text-[#a7b99c]" },
+            { 
+                id: 2, 
+                title: "데이터 스토리텔링", 
+                desc: "공공데이터를 분석하고 인사이트를 도출하여 시각적으로 설득력 있는 리포트 작성하여 스토리북으로 만들기", 
+                icon: "fa-book-open", 
+                color: "text-[#a7b99c]" 
+            },
             { id: 3, title: "데이터 정제", desc: "공개 데이터를 수집하고 가공합니다.", icon: "fa-database", color: "text-[#b58a8a]" },
             { id: 4, title: "데이터 시각화", desc: "차트와 그래프로 인사이트를 도출합니다.", icon: "fa-chart-pie", color: "text-[#d9b4b4]" },
             { id: 5, title: "AI 윤리 분석", desc: "윤리적 쟁점과 저작권을 고찰합니다.", icon: "fa-scale-balanced", color: "text-[#8fa183]" },
             { id: 6, title: "텍스트 요약", desc: "긴 문서를 AI를 통해 핵심 요약합니다.", icon: "fa-file-lines", color: "text-[#a7b99c]" },
             { id: 7, title: "이미지 생성", desc: "AI 도구를 활용한 창의적 이미지 생성 실습.", icon: "fa-image", color: "text-[#b58a8a]" },
-            { id: 8, title: "AI 스토리텔링", desc: "데이터와 AI를 결합한 내러티브 제작.", icon: "fa-book-open", color: "text-[#d9b4b4]" },
+            { id: 8, title: "AI 스토리텔링", desc: "데이터와 AI를 결합한 내러티브 제작.", icon: "fa-book", color: "text-[#d9b4b4]" },
             { id: 9, title: "문제 해결 솔루션", desc: "사회 문제 해결을 위한 AI 활용 기획.", icon: "fa-lightbulb", color: "text-[#8fa183]" },
             { id: 10, title: "최종 포트폴리오", desc: "학기 전체 활동 정리 및 성찰 프로젝트.", icon: "fa-award", color: "text-[#b58a8a]" }
         ];
@@ -155,15 +163,27 @@
         const grid = document.getElementById('assignment-grid');
         assignments.forEach(task => {
             const card = document.createElement('div');
-            // 불필요한 텍스트를 제거하고 카드 전체의 패딩과 정렬을 최적화
-            card.className = "reveal bg-white p-7 rounded-2xl card-hover flex flex-col items-start h-full min-h-[220px]";
+            card.className = "reveal bg-white p-7 rounded-2xl card-hover flex flex-col items-start h-full min-h-[260px]";
+            
+            let buttonHtml = '';
+            if (task.hasButton) {
+                buttonHtml = `
+                    <a href="${task.link}" target="_blank" class="mt-auto w-full py-2.5 px-4 bg-[#8fa183] text-white text-xs font-bold rounded-xl text-center hover:bg-[#7a8c6f] transition-colors duration-300 flex items-center justify-center gap-2">
+                        웹페이지로 이동 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                `;
+            }
+
             card.innerHTML = `
-                <div class="w-12 h-12 rounded-xl bg-[#f9fbf7] flex items-center justify-center mb-5 border border-[#edf2ec]">
-                    <i class="fa-solid ${task.icon} ${task.color} text-xl"></i>
+                <div class="w-full">
+                    <div class="w-12 h-12 rounded-xl bg-[#f9fbf7] flex items-center justify-center mb-5 border border-[#edf2ec]">
+                        <i class="fa-solid ${task.icon} ${task.color} text-xl"></i>
+                    </div>
+                    <span class="text-[10px] font-bold text-[#a7b99c] uppercase tracking-[0.2em]">Assignment ${task.id}</span>
+                    <h4 class="text-lg font-bold mt-2 mb-3 text-slate-800 transition line-clamp-1">${task.title}</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed font-light mb-6">${task.desc}</p>
                 </div>
-                <span class="text-[10px] font-bold text-[#a7b99c] uppercase tracking-[0.2em]">Assignment ${task.id}</span>
-                <h4 class="text-lg font-bold mt-2 mb-3 text-slate-800 transition line-clamp-1">${task.title}</h4>
-                <p class="text-slate-500 text-xs leading-relaxed font-light">${task.desc}</p>
+                ${buttonHtml}
             `;
             grid.appendChild(card);
         });
