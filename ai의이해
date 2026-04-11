@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI의 이해: 인공지능의 역사와 생성형 AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            scroll-behavior: smooth;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Top Utility Bar */
+        .utility-bar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 100;
+        }
+
+        /* Navigation Animation & Sticky Logic */
+        #nav-container {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        #nav-container.is-sticky {
+            position: fixed;
+            top: 4.5rem; /* Adjusted for utility bar */
+            padding: 0 1rem;
+        }
+
+        .nav-pill {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-pill:hover {
+            background: rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .nav-active {
+            color: #60a5fa;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(96, 165, 250, 0.3);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+        }
+
+        .timeline-item:hover {
+            background: rgba(59, 130, 246, 0.05);
+            transform: translateX(10px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 1.5rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #60a5fa;
+            border: 3px solid #0f172a;
+            transform: translateX(-50%);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        section {
+            padding: 5rem 1rem 5rem; 
+        }
+
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        .node-pulse {
+            animation: pulse-soft 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Top Utility Bar -->
+    <div class="utility-bar fixed top-0 left-0 w-full h-14 flex items-center justify-between px-4 md:px-8">
+        <!-- Left: Home Button & Logo -->
+        <div class="flex items-center gap-2">
+            <a href="#hero" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-slate-300 hover:text-white">
+                <i class="fas fa-home text-xl"></i>
+            </a>
+            <div class="h-6 w-[1px] bg-slate-700 mx-1"></div> <!-- Divider -->
+            <span class="text-lg font-bold tracking-tight text-slate-100">
+                AI <span class="text-blue-500">Literacy</span>
+            </span>
+        </div>
+
+        <!-- Right: Resource Buttons -->
+        <div class="flex items-center gap-3">
+            <button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm font-medium transition-colors border border-slate-700">
+                <span>슬라이드</span>
+                <i class="fas fa-download text-blue-400"></i>
+            </button>
+            <button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm font-medium transition-colors border border-slate-700">
+                <span>동영상 보기</span>
+                <i class="fas fa-play-circle text-red-400"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="hero" class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-32">
+        <div class="max-w-5xl w-full">
+            <div class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wider text-blue-400 uppercase bg-blue-400/10 rounded-full border border-blue-400/20">
+                Tech Report 2026
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">인공지능(AI)의 이해</h1>
+            <p class="text-xl md:text-2xl text-slate-400 mb-12 leading-relaxed">
+                개념적 정의부터 역사적 변천, 그리고<br class="hidden md:block"> 혁신적인 생성형 AI의 메커니즘까지 심층 분석합니다.
+            </p>
+            
+            <!-- Initial Nav Position -->
+            <div id="nav-wrapper" class="w-full h-20 flex justify-center items-start">
+                <div id="nav-container">
+                    <nav class="glass-card p-1.5 flex flex-wrap justify-center gap-1 md:gap-2 shadow-2xl rounded-2xl border border-white/10">
+                        <a href="#definition" class="nav-pill px-4 md:px-6 py-2.5 rounded-xl text-sm md:text-base font-semibold flex items-center gap-2">
+                            <i class="fas fa-search text-blue-400"></i> <span class="hidden sm:inline">정의</span>
+                        </a>
+                        <a href="#history" class="nav-pill px-4 md:px-6 py-2.5 rounded-xl text-sm md:text-base font-semibold flex items-center gap-2">
+                            <i class="fas fa-history text-purple-400"></i> <span class="hidden sm:inline">역사</span>
+                        </a>
+                        <a href="#generative" class="nav-pill px-4 md:px-6 py-2.5 rounded-xl text-sm md:text-base font-semibold flex items-center gap-2">
+                            <i class="fas fa-wand-magic-sparkles text-pink-400"></i> <span class="hidden sm:inline">생성형 AI</span>
+                        </a>
+                        <a href="#future" class="nav-pill px-4 md:px-6 py-2.5 rounded-xl text-sm md:text-base font-semibold flex items-center gap-2">
+                            <i class="fas fa-lightbulb text-yellow-400"></i> <span class="hidden sm:inline">미래 전망</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Definition Section -->
+    <section id="definition" class="max-w-6xl mx-auto px-6 md:px-12">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">1. 인공지능(AI)이란 무엇인가?</h2>
+            <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+        </div>
+        
+        <div class="glass-card p-8 md:p-12 mb-12 rounded-3xl">
+            <p class="text-lg text-slate-300 mb-8">
+                <strong>인공지능(Artificial Intelligence)</strong>은 컴퓨터가 인간의 학습, 추론, 지각, 자연어 이해 등을 모방하거나 대체할 수 있도록 구현한 기술적 총체입니다. 단순히 정해진 규칙을 따르는 자동화를 넘어 스스로 판단하고 적응하는 시스템을 지향합니다.
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700 hover:border-blue-500/50 transition duration-500 group">
+                    <div class="text-blue-400 text-3xl mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-microchip"></i></div>
+                    <h3 class="text-xl font-bold mb-2">좁은 의미의 AI (ANI)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">특정 영역의 단일 작업 수행. 현재 상용화된 유일한 단계 (ChatGPT, 자율주행 등).</p>
+                </div>
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700 hover:border-purple-500/50 transition duration-500 group">
+                    <div class="text-purple-400 text-3xl mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-brain"></i></div>
+                    <h3 class="text-xl font-bold mb-2">범용 인공지능 (AGI)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">인간 수준의 광범위한 과제 수행. 자율적으로 학습하고 스스로를 개선하는 이론적 단계.</p>
+                </div>
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700 hover:border-red-500/50 transition duration-500 group">
+                    <div class="text-red-400 text-3xl mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-rocket"></i></div>
+                    <h3 class="text-xl font-bold mb-2">초인공지능 (ASI)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">모든 면에서 인간을 압도하며 자기 인식을 갖춘 존재. 가상적·이론적 단계.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. History Section -->
+    <section id="history" class="bg-slate-900/30">
+        <div class="max-w-4xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">2. 인공지능의 역사</h2>
+                <p class="text-slate-400">도전과 침체의 궤적을 통한 발전</p>
+            </div>
+
+            <div class="timeline-container max-w-2xl mx-auto">
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">태동기 (1940~1950년대)</h3>
+                    <p class="text-slate-300 leading-relaxed">앨런 튜링의 '튜링 테스트' 제안 및 다트머스 회의를 통한 '인공지능' 용어 정립</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">제1차 AI 겨울 (1970년대)</h3>
+                    <p class="text-slate-300 leading-relaxed">퍼셉트론의 논리적 한계 노출 및 컴퓨팅 성능 부족으로 인한 연구 침체</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">전문가 시스템의 부흥 (1980년대)</h3>
+                    <p class="text-slate-300 leading-relaxed">특정 분야 지식을 규칙화한 전문가 시스템의 산업적 활용 및 지식 베이스 구축</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2 font-bold">딥러닝 혁명 (2010년대~현재)</h3>
+                    <p class="text-slate-300 leading-relaxed">빅데이터와 GPU 발전을 통한 심층 신경망의 도약 및 알파고를 통한 인공지능 대중화</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Generative AI Section -->
+    <section id="generative" class="max-w-6xl mx-auto px-6 md:px-12">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">3. 생성형 AI(Generative AI)의 이해</h2>
+            <p class="text-slate-400">학습된 데이터를 기반으로 새로운 콘텐츠를 독창적으로 생성</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <h3 class="text-2xl font-bold mb-2 flex items-center">
+                    <span class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3 text-sm">Tech</span>
+                    주요 기술적 토대
+                </h3>
+                <ul class="space-y-8">
+                    <li class="flex items-start group">
+                        <div class="mr-5 mt-1 text-blue-400 group-hover:scale-110 transition-transform"><i class="fas fa-check-circle text-xl"></i></div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-200">트랜스포머(Transformer) 아키텍처</h4>
+                            <p class="text-slate-400 text-sm md:text-base leading-relaxed mt-1">셀프 어텐션 메커니즘을 통해 문장 내 모든 관계를 동시 파악하며 대규모 학습 효율화.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start group">
+                        <div class="mr-5 mt-1 text-pink-400 group-hover:scale-110 transition-transform"><i class="fas fa-check-circle text-xl"></i></div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-200">적대적 생성 신경망(GAN)</h4>
+                            <p class="text-slate-400 text-sm md:text-base leading-relaxed mt-1">생성기와 판별기의 경쟁을 통해 초고해상도 이미지 및 정교한 콘텐츠 생성.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start group">
+                        <div class="mr-5 mt-1 text-purple-400 group-hover:scale-110 transition-transform"><i class="fas fa-check-circle text-xl"></i></div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-200">변이형 오토인코더(VAE)</h4>
+                            <p class="text-slate-400 text-sm md:text-base leading-relaxed mt-1">원본 데이터의 확률적 특성을 학습하여 잠재 변수로부터 새로운 데이터 복원.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="glass-card p-10 relative overflow-hidden group rounded-[2.5rem] min-h-[350px] flex flex-col justify-center items-center shadow-inner">
+                <div class="absolute inset-0 bg-blue-500/5 group-hover:bg-blue-500/10 transition-colors"></div>
+                <svg viewBox="0 0 200 160" class="w-full max-w-[300px] h-auto relative z-10">
+                    <circle cx="40" cy="80" r="8" fill="#60a5fa" class="node-pulse" />
+                    <circle cx="100" cy="40" r="8" fill="#a78bfa" />
+                    <circle cx="100" cy="80" r="10" fill="#a78bfa" />
+                    <circle cx="100" cy="120" r="8" fill="#a78bfa" />
+                    <circle cx="160" cy="80" r="8" fill="#f472b6" class="node-pulse" />
+                    <path d="M48 80 L92 40" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+                    <path d="M48 80 L90 80" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+                    <path d="M48 80 L92 120" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+                    <path d="M108 40 L152 80" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+                    <path d="M110 80 L152 80" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+                    <path d="M108 120 L152 80" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+                </svg>
+                <div class="mt-8 text-center relative z-10">
+                    <p class="text-blue-400 font-bold mb-1">Deep Learning Architecture</p>
+                    <p class="text-slate-500 text-xs font-mono uppercase tracking-widest">Generative Neural Network</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Future Section -->
+    <section id="future" class="max-w-6xl mx-auto mb-20 px-6 md:px-12">
+        <div class="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 p-10 md:p-16 rounded-[2.5rem] text-center shadow-2xl relative overflow-hidden border border-slate-700/50">
+            <div class="absolute -top-10 -right-10 w-64 h-64 bg-blue-900/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-indigo-900/10 rounded-full blur-3xl"></div>
+            
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-slate-100">미래 전망과 과제</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-left relative z-10">
+                <div class="bg-slate-800/40 p-8 rounded-2xl backdrop-blur-md border border-white/5 hover:border-blue-500/30 transition duration-300 group">
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-blue-300 group-hover:text-blue-200 transition-colors">
+                        <i class="fas fa-lightbulb mr-2 opacity-70"></i> 에이전틱 AI & 뉴로-심볼릭
+                    </h3>
+                    <p class="text-slate-400 leading-relaxed text-sm md:text-base group-hover:text-slate-300 transition-colors">2026년 현재 AI는 단순 답변을 넘어 스스로 계획하고 실행하는 에이전트 단계로 진화 중이며, 논리적 추론이 가능한 뉴로-심볼릭 AI가 부상하고 있습니다.</p>
+                </div>
+                <div class="bg-slate-800/40 p-8 rounded-2xl backdrop-blur-md border border-white/5 hover:border-orange-500/30 transition duration-300 group">
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-orange-300 group-hover:text-orange-200 transition-colors">
+                        <i class="fas fa-exclamation-triangle mr-2 opacity-70"></i> 윤리적·법적 과제
+                    </h3>
+                    <p class="text-slate-400 leading-relaxed text-sm md:text-base group-hover:text-slate-300 transition-colors">할루시네이션(환각) 현상, 저작권 침해 문제, 인공지능 윤리 등 기술 발전과 함께 해결해야 할 사회적 합의가 중요해지고 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center text-slate-500 text-sm border-t border-slate-800 bg-slate-900/50">
+        <p>© 2026 AI Insight Report. Created with NotebookLM Insights.</p>
+    </footer>
+
+    <script>
+        const navContainer = document.getElementById('nav-container');
+        const navWrapper = document.getElementById('nav-wrapper');
+
+        // Handling Navigation Sticky Logic
+        window.addEventListener('scroll', () => {
+            const wrapperTop = navWrapper.getBoundingClientRect().top;
+            
+            // Scroll offset check (utility bar height = 56px)
+            if (wrapperTop <= 72) { 
+                navContainer.classList.add('is-sticky');
+            } else {
+                navContainer.classList.remove('is-sticky');
+            }
+
+            // Scroll Spying for active section
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 120)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            const navItems = document.querySelectorAll('.nav-pill');
+            navItems.forEach(item => {
+                item.classList.remove('nav-active');
+                if (item.getAttribute('href').includes(current)) {
+                    item.classList.add('nav-active');
+                }
+            });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const offset = 80; 
+                    window.scrollTo({
+                        top: targetElement.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
