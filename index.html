@@ -7,31 +7,42 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;400;700&display=swap');
+        /* Pretendard와 Libre Baskerville(로고용) 폰트 임포트 */
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;300;400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
         
         body {
             font-family: 'Pretendard', sans-serif;
             scroll-behavior: smooth;
+            background-color: #f9fbf7; /* 맑은 말차 아이보리 배경 */
+        }
+
+        /* 로고 전용 폰트 스타일 */
+        .logo-font {
+            font-family: 'Libre Baskerville', serif;
+            letter-spacing: -0.02em;
         }
 
         .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(250, 252, 248, 0.85);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(143, 161, 131, 0.15);
         }
 
-        /* 차분한 딥 블루 & 슬레이트 그라데이션 */
         .hero-gradient {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e1b4b 100%);
+            background: linear-gradient(135deg, #9bb08f 0%, #b8c9ac 40%, #e8c4c4 100%);
         }
 
+        /* 카드 호버 모션 강화 */
         .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background-color: #ffffff;
+            border: 1px solid #edf2ec;
         }
 
         .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.08);
+            transform: translateY(-15px); /* 더 높게 떠오르는 모션 */
+            box-shadow: 0 25px 40px -15px rgba(143, 161, 131, 0.3);
+            border-color: #e8c4c4;
         }
 
         .reveal {
@@ -50,25 +61,24 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #f5f7f4;
         }
         ::-webkit-scrollbar-thumb {
-            background: #475569;
+            background: #b8c9ac;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #1e293b;
+            background: #9bb08f;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="text-slate-700">
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass-nav px-6 py-4">
         <div class="max-w-[1600px] mx-auto flex justify-between items-center">
-            <!-- 로고: 그라데이션 명도 및 대비 조정하여 시인성 확보 -->
-            <h1 class="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-700 via-purple-700 to-indigo-900 drop-shadow-sm">
-                AI Literacy Portfolio
+            <h1 class="text-xl md:text-2xl font-bold logo-font bg-clip-text text-transparent bg-gradient-to-r from-[#5a6652] to-[#b58a8a] drop-shadow-sm">
+                Understanding of AI Literacy
             </h1>
         </div>
     </nav>
@@ -76,32 +86,32 @@
     <!-- Hero Section -->
     <section id="home" class="hero-gradient text-white h-screen flex flex-col items-center justify-center px-6 relative">
         <div class="max-w-4xl mx-auto text-center w-full reveal active">
-            <span class="inline-block px-4 py-1 rounded-full bg-white/10 text-slate-300 text-sm font-medium mb-6 border border-white/10">2026년 1학기 포트폴리오</span>
+            <span class="inline-block px-4 py-1 rounded-full bg-white/25 text-white text-sm font-medium mb-6 border border-white/30 backdrop-blur-sm shadow-sm">2026년 1학기 포트폴리오</span>
             <h2 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight tracking-tight">
-                AI 리터러시의 이해:<br>데이터에서 이야기까지
+                AI 리터러시의 이해:<br>
+                <span class="font-light opacity-90 text-[0.85em]">데이터에서 이야기까지</span>
             </h2>
-            <div class="w-24 h-1 bg-indigo-400/50 mx-auto mb-8 rounded-full"></div>
-            <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            <div class="w-24 h-1 bg-white/50 mx-auto mb-8 rounded-full"></div>
+            <p class="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-sm">
                 생성형 AI와 데이터 분석 도구를 활용하여 현실 세계의 문제를 이해하고,<br class="hidden md:block">
                 그 결과를 의미 있는 이야기와 콘텐츠로 표현한 10개의 기록입니다.
             </p>
         </div>
 
-        <!-- 스크롤 유도 아이콘 -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-40">
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-80">
             <i class="fa-solid fa-chevron-down text-2xl text-white"></i>
         </div>
     </section>
 
     <!-- Portfolio Grid -->
-    <section id="projects" class="py-32 px-6 bg-gray-50">
+    <section id="projects" class="py-32 px-6">
         <div class="max-w-[1600px] mx-auto">
             <div class="mb-12 reveal text-center md:text-left">
-                <h3 class="text-3xl font-bold mb-2 text-slate-800">My Assignments</h3>
-                <div class="h-1 w-20 bg-indigo-600 rounded mx-auto md:mx-0"></div>
+                <h3 class="text-3xl font-bold mb-2 text-[#5a6652]">My Assignments</h3>
+                <div class="h-1 w-20 bg-[#e8c4c4] rounded mx-auto md:mx-0"></div>
             </div>
 
-            <!-- Grid: 5 columns on large screens -->
+            <!-- Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6" id="assignment-grid">
                 <!-- Cards will be injected here by JS -->
             </div>
@@ -109,62 +119,51 @@
     </section>
 
     <!-- Contact Section -->
-    <footer id="contact" class="py-16 px-6 bg-white border-t">
+    <footer id="contact" class="py-16 px-6 bg-[#f4f7f2] border-t border-[#e5ece3]">
         <div class="max-w-[1600px] mx-auto text-center">
-            <h3 class="text-2xl font-bold mb-4">함께 소통해요</h3>
-            <p class="text-gray-500 mb-8">AI 리터러시에 대한 더 많은 질문은 아래로 연락주세요.</p>
+            <h3 class="text-2xl font-bold mb-4 text-[#5a6652]">함께 소통해요</h3>
+            <p class="text-slate-500 mb-8">AI 리터러시에 대한 더 많은 질문은 아래로 연락주세요.</p>
             <div class="flex justify-center space-x-6">
-                <a href="#" class="text-3xl text-gray-400 hover:text-indigo-600 transition"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-indigo-600 transition"><i class="fa-solid fa-envelope"></i></a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-indigo-600 transition"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="text-3xl text-[#a7b99c] hover:text-[#d9b4b4] transition"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="text-3xl text-[#a7b99c] hover:text-[#d9b4b4] transition"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" class="text-3xl text-[#a7b99c] hover:text-[#b58a8a] transition"><i class="fa-brands fa-linkedin"></i></a>
             </div>
-            <p class="mt-12 text-sm text-gray-400">&copy; 2026 AI 리터러시의 이해 Portfolio. All rights reserved.</p>
+            <p class="mt-12 text-sm text-slate-400">&copy; 2026 AI 리터러시의 이해 Portfolio. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Modal -->
-    <div id="modal" class="fixed inset-0 bg-black/60 z-[100] hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full p-8 relative shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black transition">
-                <i class="fa-solid fa-xmark text-2xl"></i>
-            </button>
-            <div id="modal-content">
-                <!-- Dynamic content -->
-            </div>
-        </div>
-    </div>
-
     <script>
         const assignments = [
-            { id: 1, title: "AI 원리 탐색", desc: "생성형 AI의 작동 방식과 구조를 분석합니다.", icon: "fa-microchip", color: "text-blue-500" },
-            { id: 2, title: "프롬프트 연구", desc: "효과적인 결과를 위한 기법을 연구합니다.", icon: "fa-terminal", color: "text-green-500" },
-            { id: 3, title: "데이터 정제", desc: "공개 데이터를 수집하고 가공합니다.", icon: "fa-database", color: "text-amber-500" },
-            { id: 4, title: "데이터 시각화", desc: "차트와 그래프로 인사이트를 도출합니다.", icon: "fa-chart-pie", color: "text-red-500" },
-            { id: 5, title: "AI 윤리 분석", desc: "윤리적 쟁점과 저작권을 고찰합니다.", icon: "fa-scale-balanced", color: "text-purple-500" },
-            { id: 6, title: "텍스트 요약", desc: "긴 문서를 AI를 통해 핵심 요약합니다.", icon: "fa-file-lines", color: "text-sky-500" },
-            { id: 7, title: "이미지 생성", desc: "AI 도구를 활용한 창의적 이미지 생성 실습.", icon: "fa-image", color: "text-pink-500" },
-            { id: 8, title: "AI 스토리텔링", desc: "데이터와 AI를 결합한 내러티브 제작.", icon: "fa-book-open", color: "text-indigo-500" },
-            { id: 9, title: "문제 해결 솔루션", desc: "사회 문제 해결을 위한 AI 활용 기획.", icon: "fa-lightbulb", color: "text-orange-500" },
-            { id: 10, title: "최종 포트폴리오", desc: "학기 전체 활동 정리 및 성찰 프로젝트.", icon: "fa-award", color: "text-emerald-500" }
+            { 
+                id: 1, 
+                title: "AI의 이해", 
+                desc: "구글 노트북LM을 활용한 실습:<br>AI의 개념과 역사, 생성형 AI에 대한 자료 정리", 
+                icon: "fa-microchip", 
+                color: "text-[#8fa183]" 
+            },
+            { id: 2, title: "프롬프트 연구", desc: "효과적인 결과를 위한 기법을 연구합니다.", icon: "fa-terminal", color: "text-[#a7b99c]" },
+            { id: 3, title: "데이터 정제", desc: "공개 데이터를 수집하고 가공합니다.", icon: "fa-database", color: "text-[#b58a8a]" },
+            { id: 4, title: "데이터 시각화", desc: "차트와 그래프로 인사이트를 도출합니다.", icon: "fa-chart-pie", color: "text-[#d9b4b4]" },
+            { id: 5, title: "AI 윤리 분석", desc: "윤리적 쟁점과 저작권을 고찰합니다.", icon: "fa-scale-balanced", color: "text-[#8fa183]" },
+            { id: 6, title: "텍스트 요약", desc: "긴 문서를 AI를 통해 핵심 요약합니다.", icon: "fa-file-lines", color: "text-[#a7b99c]" },
+            { id: 7, title: "이미지 생성", desc: "AI 도구를 활용한 창의적 이미지 생성 실습.", icon: "fa-image", color: "text-[#b58a8a]" },
+            { id: 8, title: "AI 스토리텔링", desc: "데이터와 AI를 결합한 내러티브 제작.", icon: "fa-book-open", color: "text-[#d9b4b4]" },
+            { id: 9, title: "문제 해결 솔루션", desc: "사회 문제 해결을 위한 AI 활용 기획.", icon: "fa-lightbulb", color: "text-[#8fa183]" },
+            { id: 10, title: "최종 포트폴리오", desc: "학기 전체 활동 정리 및 성찰 프로젝트.", icon: "fa-award", color: "text-[#b58a8a]" }
         ];
 
         const grid = document.getElementById('assignment-grid');
         assignments.forEach(task => {
             const card = document.createElement('div');
-            card.className = "reveal bg-white p-6 rounded-xl border border-gray-100 card-hover cursor-pointer flex flex-col justify-between shadow-sm";
-            card.onclick = () => openModal(task);
+            // 불필요한 텍스트를 제거하고 카드 전체의 패딩과 정렬을 최적화
+            card.className = "reveal bg-white p-7 rounded-2xl card-hover flex flex-col items-start h-full min-h-[220px]";
             card.innerHTML = `
-                <div>
-                    <div class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center mb-4">
-                        <i class="fa-solid ${task.icon} ${task.color} text-xl"></i>
-                    </div>
-                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Task ${task.id}</span>
-                    <h4 class="text-lg font-bold mt-1 mb-2 group-hover:text-indigo-600 transition line-clamp-1">${task.title}</h4>
-                    <p class="text-gray-500 text-xs leading-relaxed line-clamp-2">${task.desc}</p>
+                <div class="w-12 h-12 rounded-xl bg-[#f9fbf7] flex items-center justify-center mb-5 border border-[#edf2ec]">
+                    <i class="fa-solid ${task.icon} ${task.color} text-xl"></i>
                 </div>
-                <div class="mt-4 pt-4 border-t border-gray-50 flex items-center text-indigo-600 font-semibold text-xs">
-                    상세보기 <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
-                </div>
+                <span class="text-[10px] font-bold text-[#a7b99c] uppercase tracking-[0.2em]">Assignment ${task.id}</span>
+                <h4 class="text-lg font-bold mt-2 mb-3 text-slate-800 transition line-clamp-1">${task.title}</h4>
+                <p class="text-slate-500 text-xs leading-relaxed font-light">${task.desc}</p>
             `;
             grid.appendChild(card);
         });
@@ -183,41 +182,6 @@
 
         window.addEventListener("scroll", reveal);
         window.onload = reveal;
-
-        function openModal(task) {
-            const modal = document.getElementById('modal');
-            const content = document.getElementById('modal-content');
-            content.innerHTML = `
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="p-3 bg-gray-100 rounded-xl">
-                        <i class="fa-solid ${task.icon} ${task.color} text-3xl"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-800">${task.title}</h2>
-                        <p class="text-gray-500 italic text-sm">Assignment Number: #${task.id}</p>
-                    </div>
-                </div>
-                <div class="prose prose-indigo max-w-none">
-                    <h3 class="text-lg font-bold mb-2 text-slate-700">과제 상세 설명</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">${task.desc} 이 과제물은 교과목 목표인 "AI 활용 및 데이터 해석 능력"을 기르기 위해 진행되었습니다. 현실 세계의 데이터를 분석하고 이를 AI를 통해 구체화하는 과정을 거쳤습니다.</p>
-                    <div class="bg-gray-50 p-8 rounded-xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-cloud-arrow-up text-gray-300 text-4xl mb-3"></i>
-                        <p class="text-gray-400 text-sm">첨부 파일이나 상세 링크가 위치할 영역입니다.</p>
-                    </div>
-                </div>
-                <button onclick="closeModal()" class="mt-8 w-full bg-slate-800 text-white py-4 rounded-xl font-bold hover:bg-slate-900 transition shadow-lg shadow-slate-200">닫기</button>
-            `;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
     </script>
 </body>
 </html>
