@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부산광역시 인구 구조 지형 변화 (2020-2024)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 380px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-wrapper {
+                height: 420px;
+            }
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #1E3A8A, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-pulse {
+            animation: pulse-soft 2s infinite;
+        }
+        @keyframes pulse-soft {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
+
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <!-- 홈 버튼: 포트폴리오 메인 인덱스 링크 -->
+                <a href="https://sxxhye7.github.io/portfolio/index.html" class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:bg-cyan-600 hover:text-white transition-all shadow-sm" title="포트폴리오 홈으로 이동">
+                    <span class="text-xl">🏠</span>
+                </a>
+                <div class="text-xl font-black tracking-tight text-slate-800">
+                    <span class="text-cyan-600">BUSAN</span> DATA INSIGHT
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-500">
+                <a href="#overview" class="hover:text-cyan-600 transition-colors">총괄 현황</a>
+                <a href="#polarization" class="hover:text-cyan-600 transition-colors">거점 양극화</a>
+                <a href="#growth" class="hover:text-cyan-600 transition-colors">K자형 성장</a>
+                <a href="#aging" class="hover:text-cyan-600 transition-colors">초고령 사회</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+        <div class="inline-block bg-cyan-100 text-cyan-800 px-4 py-1.5 rounded-full text-sm font-bold tracking-widest mb-6">
+            2020-2024 인구 지형 변화 리포트
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+            부산의 인구 방어선 후퇴와 <br class="hidden md:block" />
+            <span class="text-gradient">새로운 양극화의 시대</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-10">
+            과거의 중심지였던 원도심은 빠르게 축소되고, 도시의 양 끝단만이 성장하는 극단적인 K자형 지형 재편. 
+            단 4년 만에 100만 명을 돌파한 고령 인구가 만들어내는 부산광역시의 새로운 인구 구조 현황을 분석합니다.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <!-- 스토리북 버튼 -->
+            <a href="https://gemini.google.com/share/db4ec6fe49d9" target="_blank" class="btn-pulse inline-flex items-center px-8 py-4 bg-cyan-600 hover:bg-cyan-700 text-white text-lg font-bold rounded-full transition-all shadow-lg shadow-cyan-200 group w-full sm:w-auto justify-center">
+                <span>📖 스토리북 보러가기</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </a>
+            <!-- 영상보기 버튼: 요청하신 PDF 파일 경로로 수정 -->
+            <a href="./스토리북_compressed.pdf" target="_blank" class="inline-flex items-center px-8 py-4 bg-white border-2 border-slate-200 hover:border-cyan-600 hover:text-cyan-600 text-slate-700 text-lg font-bold rounded-full transition-all shadow-sm w-full sm:w-auto justify-center group">
+                <span>🎬 영상보기</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-24">
+        <!-- 메인 데이터 요약 -->
+        <section id="overview" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="stat-card bg-white rounded-2xl p-8 shadow-lg border-t-4 border-blue-900 flex flex-col items-center text-center">
+                <div class="text-4xl mb-4">👥</div>
+                <h3 class="text-slate-500 font-bold mb-2">2024년 총인구</h3>
+                <div class="text-4xl font-black text-slate-800">3,257,256<span class="text-xl font-bold text-slate-500 ml-1">명</span></div>
+                <div class="mt-4 text-sm font-semibold text-orange-500 bg-orange-50 px-3 py-1 rounded-full">
+                    10년간 19.1만 명 감소 (-5.5%)
+                </div>
+            </div>
+            <div class="stat-card bg-white rounded-2xl p-8 shadow-lg border-t-4 border-cyan-500 flex flex-col items-center text-center">
+                <div class="text-4xl mb-4">👴</div>
+                <h3 class="text-slate-500 font-bold mb-2">60세 이상 고령자</h3>
+                <div class="text-4xl font-black text-cyan-600">1,020,554<span class="text-xl font-bold text-slate-500 ml-1">명</span></div>
+                <div class="mt-4 text-sm font-semibold text-cyan-700 bg-cyan-50 px-3 py-1 rounded-full">
+                    4년 만에 14.4% 폭증
+                </div>
+            </div>
+            <div class="stat-card bg-white rounded-2xl p-8 shadow-lg border-t-4 border-orange-500 flex flex-col items-center text-center">
+                <div class="text-4xl mb-4">🚨</div>
+                <h3 class="text-slate-500 font-bold mb-2">부산 전체 고령자 비중</h3>
+                <div class="text-4xl font-black text-orange-500">31.3<span class="text-xl font-bold text-slate-500 ml-1">%</span></div>
+                <div class="mt-4 text-sm font-semibold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
+                    시민 3명 중 1명은 60세 이상
+                </div>
+            </div>
+        </section>
+
+        <!-- 거점 양극화 섹션 -->
+        <section id="polarization" class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-slate-800 mb-6">거점의 붕괴와 양극화</h2>
+                    <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                        부산의 실질적인 주거·상업 중심지 역할을 하는 'Top 3' 거점(해운대, 부산진, 사하)은 여전히 강력한 인구 밀집도를 보이고 있습니다. 반면, 과거 중심지였던 원도심 'Bottom 3' 거점(중구, 동구, 서구)은 심각한 공동화 현상을 겪고 있습니다.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start p-4 bg-slate-50 rounded-xl">
+                            <span class="text-2xl mr-4">🏢</span>
+                            <div>
+                                <h4 class="font-bold text-slate-800">40만 명 방어선의 붕괴</h4>
+                                <p class="text-slate-600 text-sm mt-1">2015년 해운대구가 유지하던 인구 40만 명 선이 무너졌으며, 현재 부산 내 40만 이상 자치구는 전무합니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-4 bg-orange-50 rounded-xl border border-orange-100">
+                            <span class="text-2xl mr-4">⚠️</span>
+                            <div>
+                                <h4 class="font-bold text-orange-700">중구의 소멸 위기</h4>
+                                <p class="text-orange-600 text-sm mt-1">부산 내 최소 인구 지역인 중구는 총인구가 약 3.9만 명에 불과하여 거대 행정동 1개 규모보다 작아졌습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="polarizationChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- K자형 성장 섹션 -->
+        <section id="growth" class="bg-slate-900 rounded-3xl p-8 md:p-12 shadow-2xl text-white">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1 chart-wrapper">
+                    <canvas id="growthChart"></canvas>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <h2 class="text-3xl font-extrabold text-white mb-6">유일한 생존 지대: '양 날개'의 K자형 성장</h2>
+                    <p class="text-lg text-slate-300 mb-6 leading-relaxed">
+                        도시 전역이 쇠퇴하는 가운데, 부산의 서쪽 끝(강서구)과 동쪽 끝(기장군)만이 인구가 폭발적으로 유입되는 특이 현상이 발생하고 있습니다. 이는 신도시 개발과 산업 인프라 이동에 따른 결과입니다.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <span class="flex-shrink-0 h-8 w-8 flex items-center justify-center rounded-full bg-cyan-500 text-slate-900 font-black mr-4">1</span>
+                            <span class="text-slate-200"><strong>강서구의 기적:</strong> 2015년 대비 약 58% 급성장. 부산에서 유일하게 젊은 층과 영유아가 집중되는 핵심 성장 엔진입니다.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="flex-shrink-0 h-8 w-8 flex items-center justify-center rounded-full bg-cyan-500 text-slate-900 font-black mr-4">2</span>
+                            <span class="text-slate-200"><strong>기장군의 확장:</strong> 일광 신도시 등의 입주로 꾸준히 성장하며 동부산권의 새로운 주거 거점으로 도약했습니다.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 초고령 사회 섹션 -->
+        <section id="aging" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-12">
+                <div class="mb-8 border-l-4 border-orange-500 pl-6">
+                    <h2 class="text-3xl font-extrabold text-slate-800">가속화되는 초고령 사회</h2>
+                    <p class="text-lg text-slate-600 mt-2">고령 인구의 질적, 양적 팽창은 부산의 모든 자치구가 직면한 가장 시급한 과제입니다.</p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 text-center">주요 거점별 60세 이상 인구 증가 속도 (2020 vs 2024)</h3>
+                <div class="chart-wrapper">
+                    <canvas id="agingBarChart"></canvas>
+                </div>
+                <p class="text-sm text-slate-500 mt-6 text-center">
+                    * 해운대구의 역설: 전체 인구는 감소하지만, 고령 인구는 4년 만에 급증하여 실버 타운화가 가장 빠르게 진행 중입니다.
+                </p>
+            </div>
+
+            <div class="lg:col-span-4 bg-white rounded-3xl p-8 shadow-xl border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2 text-center">중구 인구 구조의 붕괴</h3>
+                    <p class="text-center text-orange-600 font-semibold mb-6">부산 내 고령화 밀도 1위</p>
+                </div>
+                <div class="chart-wrapper" style="height: 250px;">
+                    <canvas id="jungguDonutChart"></canvas>
+                </div>
+                <div class="mt-6 bg-slate-50 p-4 rounded-xl text-sm text-slate-700">
+                    중구는 전체 인구 대비 고령자 비중이 <strong>37.9%</strong>에 육박하며 '지방소멸'의 전형적 단계를 보여줍니다.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm">
+        <p>본 인포그래픽은 국가통계포털(KOSIS) 데이터를 기반으로 재구성되었습니다.</p>
+        <p class="mt-2 font-semibold text-slate-500">© 2026 BUSAN DATA INSIGHT REPORT</p>
+    </footer>
+
+    <script>
+        const wrapText = (textArray) => {
+            return textArray.map(label => {
+                if (label.length <= 16) return label;
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = word + ' ';
+                    } else {
+                        currentLine += word + ' ';
+                    }
+                });
+                if (currentLine.trim() !== '') lines.push(currentLine.trim());
+                return lines;
+            });
+        };
+
+        const globalTooltipConfig = {
+            tooltip: {
+                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                titleFont: { size: 14, family: 'sans-serif' },
+                bodyFont: { size: 14, family: 'sans-serif' },
+                padding: 12,
+                cornerRadius: 8,
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        return Array.isArray(label) ? label.join(' ') : label;
+                    }
+                }
+            }
+        };
+
+        Chart.defaults.color = '#64748B';
+        Chart.defaults.font.family = 'sans-serif';
+
+        const initCharts = () => {
+            const ctx1 = document.getElementById('polarizationChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: wrapText(['해운대구', '부산진구', '사하구', '서구', '동구', '중구']),
+                    datasets: [{
+                        label: '2024년 총인구 (명)',
+                        data: [378196, 351180, 293982, 103413, 85665, 39599],
+                        backgroundColor: ['#06B6D4', '#06B6D4', '#06B6D4', '#F97316', '#F97316', '#F97316'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { ...globalTooltipConfig, legend: { display: false } },
+                    scales: { y: { beginAtZero: true, ticks: { callback: (v) => v.toLocaleString() } } }
+                }
+            });
+
+            const ctx2 = document.getElementById('growthChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: wrapText(['강서구', '기장군', '부산광역시 전체']),
+                    datasets: [{
+                        data: [58.0, 16.0, -5.5],
+                        backgroundColor: ['#FBBF24', '#06B6D4', '#F97316'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { 
+                        x: { ticks: { color: '#94A3B8' } }, 
+                        y: { ticks: { color: '#F8FAFC' } } 
+                    }
+                }
+            });
+
+            const ctx3 = document.getElementById('agingBarChart').getContext('2d');
+            new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: wrapText(['부산전체', '해운대구', '부산진구', '중구']),
+                    datasets: [
+                        { label: '2020년 60세 이상', data: [892277, 93524, 95280, 13932], backgroundColor: '#94A3B8', borderRadius: 4 },
+                        { label: '2024년 60세 이상', data: [1020554, 113835, 108753, 15002], backgroundColor: '#1E3A8A', borderRadius: 4 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: globalTooltipConfig }
+            });
+
+            const ctx4 = document.getElementById('jungguDonutChart').getContext('2d');
+            new Chart(ctx4, {
+                type: 'doughnut',
+                data: {
+                    labels: wrapText(['60세 이상 고령자', '60세 미만']),
+                    datasets: [{ data: [37.9, 62.1], backgroundColor: ['#F97316', '#E2E8F0'], borderWidth: 0 }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: { legend: { display: false } }
+                },
+                plugins: [{
+                    id: 'textCenter',
+                    beforeDraw: (chart) => {
+                        let { width, height, ctx } = chart;
+                        ctx.restore();
+                        ctx.font = "bold 2em sans-serif";
+                        ctx.textBaseline = "middle";
+                        ctx.fillStyle = "#F97316";
+                        let text = "37.9%",
+                            textX = Math.round((width - ctx.measureText(text).width) / 2),
+                            textY = height / 2;
+                        ctx.fillText(text, textX, textY);
+                        ctx.save();
+                    }
+                }]
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', initCharts);
+    </script>
+</body>
+</html>
