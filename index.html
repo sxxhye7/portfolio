@@ -141,6 +141,7 @@
                 icon: "fa-microchip", 
                 color: "text-[#8fa183]",
                 hasButton: true,
+                buttonText: "웹페이지로 이동",
                 link: "./03/ai의이해.html" 
             },
             { 
@@ -148,7 +149,10 @@
                 title: "데이터 스토리텔링", 
                 desc: "공공데이터를 분석하고 인사이트를 도출하여 시각적으로 설득력 있는 리포트 작성하여 스토리북으로 만들기", 
                 icon: "fa-book-open", 
-                color: "text-[#a7b99c]" 
+                color: "text-[#a7b99c]",
+                hasButton: true,
+                buttonText: "결과 보기",
+                link: "./04/부산인구.html"
             },
             { id: 3, title: "데이터 정제", desc: "공개 데이터를 수집하고 가공합니다.", icon: "fa-database", color: "text-[#b58a8a]" },
             { id: 4, title: "데이터 시각화", desc: "차트와 그래프로 인사이트를 도출합니다.", icon: "fa-chart-pie", color: "text-[#d9b4b4]" },
@@ -169,7 +173,7 @@
             if (task.hasButton) {
                 buttonHtml = `
                     <a href="${task.link}" target="_blank" class="mt-auto w-full py-2.5 px-4 bg-[#8fa183] text-white text-xs font-bold rounded-xl text-center hover:bg-[#7a8c6f] transition-colors duration-300 flex items-center justify-center gap-2">
-                        웹페이지로 이동 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        ${task.buttonText} <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 `;
             }
