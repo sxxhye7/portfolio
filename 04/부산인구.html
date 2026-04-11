@@ -48,8 +48,8 @@
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-4">
-                <!-- 홈 버튼: 포트폴리오 메인 인덱스 링크 -->
-                <a href="https://sxxhye7.github.io/portfolio/index.html" class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:bg-cyan-600 hover:text-white transition-all shadow-sm" title="포트폴리오 홈으로 이동">
+                <!-- 홈 버튼: 상위 디렉토리의 index.html로 이동하도록 수정 -->
+                <a href="../index.html" class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:bg-cyan-600 hover:text-white transition-all shadow-sm" title="홈으로 이동">
                     <span class="text-xl">🏠</span>
                 </a>
                 <div class="text-xl font-black tracking-tight text-slate-800">
@@ -86,7 +86,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
             </a>
-            <!-- 영상보기 버튼: 요청하신 PDF 파일 경로로 수정 -->
+            <!-- 영상보기 버튼 -->
             <a href="./스토리북_compressed.pdf" target="_blank" class="inline-flex items-center px-8 py-4 bg-white border-2 border-slate-200 hover:border-cyan-600 hover:text-cyan-600 text-slate-700 text-lg font-bold rounded-full transition-all shadow-sm w-full sm:w-auto justify-center group">
                 <span>🎬 영상보기</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -98,7 +98,7 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-24">
-        <!-- 메인 데이터 요약 -->
+
         <section id="overview" class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="stat-card bg-white rounded-2xl p-8 shadow-lg border-t-4 border-blue-900 flex flex-col items-center text-center">
                 <div class="text-4xl mb-4">👥</div>
@@ -126,7 +126,6 @@
             </div>
         </section>
 
-        <!-- 거점 양극화 섹션 -->
         <section id="polarization" class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -157,7 +156,6 @@
             </div>
         </section>
 
-        <!-- K자형 성장 섹션 -->
         <section id="growth" class="bg-slate-900 rounded-3xl p-8 md:p-12 shadow-2xl text-white">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="order-2 lg:order-1 chart-wrapper">
@@ -182,7 +180,6 @@
             </div>
         </section>
 
-        <!-- 초고령 사회 섹션 -->
         <section id="aging" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div class="lg:col-span-12">
                 <div class="mb-8 border-l-4 border-orange-500 pl-6">
