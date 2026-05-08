@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심리학의 역사: 인간 마음을 이해하기 위한 여정</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8f9fa;
+            color: #4a5568;
+        }
+
+        .bg-pastel-blue { background-color: #e3f2fd; }
+        .bg-pastel-green { background-color: #e8f5e9; }
+        .bg-pastel-purple { background-color: #f3e5f5; }
+        .bg-pastel-orange { background-color: #fff3e0; }
+        .bg-pastel-rose { background-color: #fce4ec; }
+
+        .border-pastel-blue { border-color: #bbdefb; }
+        .border-pastel-green { border-color: #c8e6c9; }
+        .border-pastel-purple { border-color: #e1bee7; }
+
+        .text-muted-blue { color: #5c7cfa; }
+        .text-muted-green { color: #51cf66; }
+        .text-muted-purple { color: #be4bdb; }
+
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s;
+        }
+
+        .back-arrow {
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        
+        .back-arrow:hover {
+            color: #3b82f6;
+            transform: scale(1.1) translateX(-2px);
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+
+        .step-node {
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line { left: 20px; }
+            .step-node { justify-content: flex-start !important; padding-left: 40px; }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-5xl mx-auto relative">
+        <!-- Back Arrow: 상단 여백 조절 pt-2 -> pt-1 -->
+        <nav class="absolute top-0 left-0 pt-1 pl-0 md:pl-2">
+            <a href="./index.html" class="back-arrow text-2xl md:text-3xl text-gray-400 hover:text-blue-500" title="이전으로 돌아가기">
+                <i class="fas fa-arrow-left font-bold"></i>
+            </a>
+        </nav>
+
+        <!-- Header: mt-20에서 mt-12로 조정 (약 2/3 수준) -->
+        <header class="text-center mt-12 mb-16">
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4 tracking-tight">심리학의 역사</h1>
+            <p class="text-lg text-gray-600 font-light">인간 마음을 이해하기 위한 사상적 여정과 핵심 동력</p>
+            <div class="w-16 h-1 bg-gray-300 mx-auto mt-6 rounded-full"></div>
+        </header>
+
+        <!-- Section 1: Philosophy -->
+        <section class="mb-12">
+            <div class="flex items-center mb-6">
+                <div class="p-3 bg-pastel-blue rounded-lg mr-4 shadow-sm">
+                    <i class="fas fa-landmark text-muted-blue text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold">1. 철학적 토대와 과학적 분화</h2>
+            </div>
+            <div class="card p-6 border-l-8 border-pastel-blue">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="md:col-span-1 flex flex-col items-center justify-center border-r border-gray-100 p-4">
+                        <div class="w-24 h-24 bg-gray-100 rounded-full mb-4 flex items-center justify-center overflow-hidden border-4 border-white shadow-inner">
+                             <i class="fas fa-user-tie text-4xl text-gray-400"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">존 로크 (John Locke)</h3>
+                        <p class="text-sm text-gray-500">1632 - 1704</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <span class="font-bold text-blue-800 text-sm">핵심 사상: 백지설 (Tabula Rasa)</span>
+                            <p class="text-sm mt-1 leading-relaxed">인간의 마음은 아무것도 기록되지 않은 '백지' 상태이며, 모든 지식은 경험과 감각을 통해 형성된다.</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="p-3 bg-white border border-gray-100 rounded-lg shadow-sm text-center">
+                                <span class="block font-bold text-blue-600">양육 (Nurture)</span>
+                                <span>환경의 중요성 확립</span>
+                            </div>
+                            <div class="p-3 bg-white border border-gray-100 rounded-lg shadow-sm text-center">
+                                <span class="block font-bold text-blue-600">행동주의의 기점</span>
+                                <span>외부 자극과 학습 강조</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2 & 3: Humanism (The 3rd Force) -->
+        <section class="mb-12">
+            <div class="flex items-center mb-6">
+                <div class="p-3 bg-pastel-green rounded-lg mr-4 shadow-sm">
+                    <i class="fas fa-hands-holding text-muted-green text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold">2. 인본주의: 제3의 세력</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Rogers -->
+                <div class="card p-6 border-t-8 border-pastel-green">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-pastel-green rounded-full flex items-center justify-center mr-3 shadow-sm">
+                            <i class="fas fa-heart text-muted-green"></i>
+                        </div>
+                        <h3 class="font-bold text-xl">칼 로저스</h3>
+                    </div>
+                    <p class="text-sm mb-4 font-semibold text-gray-700">"인간중심 접근 (Person-Centered Approach)"</p>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-xs"></i> <span>무조건적 긍정적 존중</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-xs"></i> <span>내적 참조틀과 공감적 이해</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-xs"></i> <span>유기체적 경험과 '지금-여기'</span></li>
+                    </ul>
+                    <div class="mt-6 pt-4 border-t border-gray-100 italic text-xs text-gray-400">
+                        완전히 기능하는 사람: 경험의 개방성, 실존적 삶, 자신에 대한 신뢰
+                    </div>
+                </div>
+
+                <!-- Maslow -->
+                <div class="card p-6 border-t-8 border-pastel-green">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-pastel-green rounded-full flex items-center justify-center mr-3 shadow-sm">
+                            <i class="fas fa-layer-group text-muted-green"></i>
+                        </div>
+                        <h3 class="font-bold text-xl">에이브러햄 매슬로</h3>
+                    </div>
+                    <p class="text-sm mb-4 font-semibold text-gray-700">"욕구위계이론 (Hierarchy of Needs)"</p>
+                    <div class="space-y-1 mt-2">
+                        <div class="w-full bg-green-200 text-[10px] text-center py-1.5 rounded-t-lg font-bold text-green-900">자아실현 (성장 동기)</div>
+                        <div class="w-[90%] mx-auto bg-green-100 text-[10px] text-center py-1.5 font-semibold">존중 욕구</div>
+                        <div class="w-[80%] mx-auto bg-green-50 text-[10px] text-center py-1.5">사회적 욕구</div>
+                        <div class="w-[70%] mx-auto bg-gray-50 text-[10px] text-center py-1.5">안전 욕구 (결핍 동기)</div>
+                        <div class="w-[60%] mx-auto bg-gray-100 text-[10px] text-center py-1.5 rounded-b-lg">생리적 욕구</div>
+                    </div>
+                    <p class="text-xs mt-4 text-gray-500 leading-relaxed italic text-center">
+                        결핍 충족을 넘어 존재의 확장을 지향함
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Cognitive Revolution -->
+        <section class="mb-12">
+            <div class="flex items-center mb-6">
+                <div class="p-3 bg-pastel-purple rounded-lg mr-4 shadow-sm">
+                    <i class="fas fa-microchip text-muted-purple text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold">3. 인지 혁명: 정보 처리 시스템으로서의 마음</h2>
+            </div>
+            <div class="card p-8 relative overflow-hidden bg-gradient-to-r from-white to-purple-50">
+                <div class="absolute top-0 right-0 p-4 opacity-5">
+                    <i class="fas fa-brain text-9xl"></i>
+                </div>
+                <div class="flex flex-wrap justify-between items-center gap-4 relative z-10">
+                    <div class="flex-1 min-w-[200px] text-center p-4">
+                        <span class="text-3xl font-black text-purple-200 block mb-1">1950s</span>
+                        <span class="text-sm font-bold text-gray-600">태동기</span>
+                        <p class="text-xs text-gray-400 mt-2 leading-relaxed">행동주의의 한계 인식<br>언어학·컴퓨터 과학 결합</p>
+                    </div>
+                    <div class="hidden md:block"><i class="fas fa-chevron-right text-gray-200 text-2xl"></i></div>
+                    <div class="flex-1 min-w-[200px] text-center p-6 bg-white border border-purple-100 rounded-2xl shadow-sm">
+                        <span class="text-3xl font-black text-purple-500 block mb-1">1970s</span>
+                        <span class="text-sm font-bold text-purple-700">부흥기</span>
+                        <p class="text-xs text-gray-600 mt-2 leading-relaxed">정보 처리 패러다임<br>행동주의를 압도하기 시작</p>
+                    </div>
+                    <div class="hidden md:block"><i class="fas fa-chevron-right text-gray-200 text-2xl"></i></div>
+                    <div class="flex-1 min-w-[200px] text-center p-4">
+                        <span class="text-3xl font-black text-purple-800 block mb-1">1980s+</span>
+                        <span class="text-sm font-bold text-gray-600">주류화</span>
+                        <p class="text-xs text-gray-400 mt-2 leading-relaxed">지배적 심리학 노선 확립<br>마음의 모듈성 연구</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Evolutionary Psychology -->
+        <section class="mb-12">
+            <div class="flex items-center mb-6">
+                <div class="p-3 bg-pastel-orange rounded-lg mr-4 shadow-sm">
+                    <i class="fas fa-dna text-orange-400 text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold">4. 진화심리학: 본성의 기원</h2>
+            </div>
+            <div class="card p-6 bg-gradient-to-br from-white to-orange-50 border-r-8 border-pastel-orange">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3 border-r border-orange-100 pr-6">
+                        <h3 class="font-bold text-orange-700 mb-2">데이비드 버스 (David Buss)</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            마음은 진화의 산물이며, 우리의 본능은 인류 조상들의 '성공적인 적응 전략'이 축적된 결과이다.
+                        </p>
+                    </div>
+                    <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-xl shadow-sm border border-orange-100">
+                            <span class="text-xs font-bold text-orange-500 uppercase tracking-wider">남성의 진화적 선호</span>
+                            <p class="text-sm font-bold mt-1">번식 가능성 확보</p>
+                            <div class="h-px bg-orange-50 my-2"></div>
+                            <p class="text-xs text-gray-500 leading-relaxed">젊음, 신체적 건강함, 생식 능력을 나타내는 외적 매력 중시</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-sm border border-orange-100">
+                            <span class="text-xs font-bold text-orange-500 uppercase tracking-wider">여성의 진화적 선호</span>
+                            <p class="text-sm font-bold mt-1">생존 자원 및 보호</p>
+                            <div class="h-px bg-orange-50 my-2"></div>
+                            <p class="text-xs text-gray-500 leading-relaxed">자원 확보 능력, 사회적 지위, 야망, 자녀 부양 의지 중시</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-orange-100 rounded-lg text-center">
+                    <span class="text-xs font-bold text-orange-800 uppercase tracking-widest block mb-1">THE INSIGHT</span>
+                    <p class="text-xs italic text-orange-900 font-medium">"우리의 욕망은 고대의 적응 문제를 해결하기 위해 설계된 장치들의 결과물이다."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="mb-20">
+             <div class="card overflow-hidden border border-gray-100">
+                 <table class="w-full text-sm text-left">
+                     <thead class="bg-gray-50 text-gray-600">
+                         <tr>
+                             <th class="p-5 font-bold">구분</th>
+                             <th class="p-5 font-bold">정신분석 (1세력)</th>
+                             <th class="p-5 font-bold">행동주의 (2세력)</th>
+                             <th class="p-5 font-bold text-green-700 bg-green-50">인본주의 (3세력)</th>
+                         </tr>
+                     </thead>
+                     <tbody class="divide-y divide-gray-50">
+                         <tr>
+                             <td class="p-5 font-bold text-gray-500 bg-gray-50/50">인간관</td>
+                             <td class="p-5 text-gray-600">무의식의 결정론</td>
+                             <td class="p-5 text-gray-600">환경적 기계론</td>
+                             <td class="p-5 text-green-700 font-bold bg-green-50/30">주체적 자아실현</td>
+                         </tr>
+                         <tr>
+                             <td class="p-5 font-bold text-gray-500 bg-gray-50/50">핵심동력</td>
+                             <td class="p-5 text-gray-600">본능적 충동</td>
+                             <td class="p-5 text-gray-600">자극과 반응</td>
+                             <td class="p-5 text-green-700 font-bold bg-green-50/30">성장과 선택</td>
+                         </tr>
+                         <tr>
+                             <td class="p-5 font-bold text-gray-500 bg-gray-50/50">주요관점</td>
+                             <td class="p-5 text-gray-600">과거·내면</td>
+                             <td class="p-5 text-gray-600">현재·외부행동</td>
+                             <td class="p-5 text-green-700 font-bold bg-green-50/30">지금-여기·전체성</td>
+                         </tr>
+                     </tbody>
+                 </table>
+             </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center pb-20 border-t border-gray-100 pt-10">
+            <p class="text-gray-400 text-sm mb-2 font-light">심리학의 지적 여정은 우리 안의 본성을 이해하고 성장을 향한 에너지로 전환하는 과정입니다.</p>
+            <p class="text-gray-300 text-xs">A Journey Through the History of Psychology &copy; 2024</p>
+        </footer>
+    </div>
+</body>
+</html>
