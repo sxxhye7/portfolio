@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기상상태별 교통사고 통계 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
+        .card { background: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .gradient-bg { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-5xl mx-auto">
+        <!-- Header -->
+        <header class="gradient-bg text-white p-8 rounded-t-2xl text-center mb-1">
+            <h1 class="text-3xl md:text-4xl font-black mb-2">교통사고 통계 리포트 (2020-2024)</h1>
+            <p class="text-slate-300 text-lg">기상상태에 따른 사고 발생 현황 및 추이 분석</p>
+        </header>
+
+        <!-- Key Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="card p-6 border-t-4 border-blue-500">
+                <div class="text-slate-500 text-sm font-bold mb-1 uppercase">5개년 전체 사고</div>
+                <div class="text-3xl font-black text-slate-800">1,004,265건</div>
+                <div class="text-xs text-blue-600 mt-2 font-bold">연평균 약 20만 건 발생</div>
+            </div>
+            <div class="card p-6 border-t-4 border-red-500">
+                <div class="text-slate-500 text-sm font-bold mb-1 uppercase">비 오는 날 (2023)</div>
+                <div class="text-3xl font-black text-slate-800">+45.1%</div>
+                <div class="text-xs text-red-600 mt-2 font-bold">2022년 대비 급증한 사고율</div>
+            </div>
+            <div class="card p-6 border-t-4 border-indigo-500">
+                <div class="text-slate-500 text-sm font-bold mb-1 uppercase">안개 사고</div>
+                <div class="text-3xl font-black text-slate-800">-44.4%</div>
+                <div class="text-xs text-indigo-600 mt-2 font-bold">2021년 고점 대비 지속 감소</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- Main Trend Chart -->
+            <div class="card p-6">
+                <h3 class="text-lg font-bold mb-4 flex items-center">
+                    <span class="w-2 h-6 bg-blue-600 mr-2 rounded"></span>
+                    연도별 전체 사고 발생 추이
+                </h3>
+                <canvas id="mainTrendChart" height="200"></canvas>
+            </div>
+
+            <!-- Weather Distribution -->
+            <div class="card p-6 text-center">
+                <h3 class="text-lg font-bold mb-4 text-left flex items-center">
+                    <span class="w-2 h-6 bg-orange-400 mr-2 rounded"></span>
+                    기상상태별 사고 비중 (2024년 기준)
+                </h3>
+                <div class="flex justify-center items-center h-48">
+                    <canvas id="weatherPieChart"></canvas>
+                </div>
+                <p class="text-xs text-slate-400 mt-4">*맑은 날을 제외한 기상 악화 시 사고 비중 분석</p>
+            </div>
+        </div>
+
+        <!-- Rain & Snow Detailed Chart -->
+        <div class="card p-6 mb-6">
+            <h3 class="text-lg font-bold mb-4 flex items-center">
+                <span class="w-2 h-6 bg-indigo-600 mr-2 rounded"></span>
+                비·눈 기상 악화 시 사고 변동 상세
+            </h3>
+            <canvas id="weatherDetailChart" height="100"></canvas>
+        </div>
+
+        <!-- Insights -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                <h4 class="font-bold text-blue-800 mb-2">💡 분석 요약</h4>
+                <ul class="text-sm text-blue-700 space-y-2">
+                    <li>• 전체 사고는 5년 전 대비 <strong>6.3% 감소</strong>하며 안정화 추세</li>
+                    <li>• 비 오는 날의 사고는 강수량에 따라 연도별 편차가 매우 큼</li>
+                    <li>• 눈길 사고는 2021년 폭증 이후 증감을 반복하는 불안정한 형태</li>
+                </ul>
+            </div>
+            <div class="bg-orange-50 p-6 rounded-xl border border-orange-100">
+                <h4 class="font-bold text-orange-800 mb-2">⚠️ 안전 주의보</h4>
+                <ul class="text-sm text-orange-700 space-y-2">
+                    <li>• 기상 악화 시 사고 변동폭이 크므로 <strong>선제적 감속</strong> 필요</li>
+                    <li>• 기타/불명 사고의 증가 추세에 따른 정확한 원인 규명 중요</li>
+                    <li>• 특히 장마철과 한겨울 결빙기 집중 단속 및 홍보 강화 필요</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer class="mt-8 text-center text-slate-400 text-sm pb-8">
+            Data Source: 기상상태별 교통사고 통계 (2020-2024) | Graphic by Gemini
+        </footer>
+    </div>
+
+    <script>
+        // Data from CSV/Article
+        const labels = ['2020년', '2021년', '2022년', '2023년', '2024년'];
+        const totalAccidents = [209654, 203130, 196836, 198296, 196349];
+        const rainAccidents = [15748, 13373, 9493, 13777, 12603];
+        const snowAccidents = [615, 1395, 1115, 913, 1131];
+        const fogAccidents = [165, 207, 144, 154, 115];
+        const cloudAccidents = [7216, 6982, 6018, 6836, 6863];
+
+        // Main Trend Chart
+        new Chart(document.getElementById('mainTrendChart'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '전체 사고 건수',
+                    data: totalAccidents,
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: false, grid: { color: '#f1f5f9' } } }
+            }
+        });
+
+        // Weather Pie Chart (2024 Data excluding Clear days for visualization)
+        new Chart(document.getElementById('weatherPieChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['비', '눈', '흐림', '안개', '기타'],
+                datasets: [{
+                    data: [12603, 1131, 6863, 115, 2543],
+                    backgroundColor: ['#3b82f6', '#94a3b8', '#64748b', '#cbd5e1', '#e2e8f0']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { boxWidth: 12, font: { size: 10 } } }
+                }
+            }
+        });
+
+        // Weather Detail Chart
+        new Chart(document.getElementById('weatherDetailChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: '비(Rain)',
+                        data: rainAccidents,
+                        backgroundColor: '#3b82f6'
+                    },
+                    {
+                        label: '눈(Snow)',
+                        data: snowAccidents,
+                        backgroundColor: '#94a3b8'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: { 
+                    x: { grid: { display: false } },
+                    y: { grid: { color: '#f1f5f9' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
