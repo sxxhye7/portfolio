@@ -1,164 +1,215 @@
-import React from 'react';
-import { 
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-  BarChart, Bar, Cell, ComposedChart, Area
-} from 'recharts';
-import { AlertTriangle, TrendingUp, Car, Users, ArrowDownRight, ArrowUpRight } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고령운전자 사고 현황 인포그래픽</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
+        body { font-family: 'Pretendard', sans-serif; }
+        .chart-container { position: relative; height: 300px; width: 100%; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 p-4 md:p-8">
 
-const App = () => {
-  const data = [
-    { year: '2020년', total: 209654, senior: 31072, ratio: 14.82 },
-    { year: '2021년', total: 203130, senior: 31841, ratio: 15.68 },
-    { year: '2022년', total: 196836, senior: 34652, ratio: 17.60 },
-    { year: '2023년', total: 198296, senior: 39614, ratio: 19.98 },
-    { year: '2024년', total: 196349, senior: 42369, ratio: 21.58 },
-  ];
-
-  // 포맷팅 함수
-  const formatNumber = (num) => new Intl.NumberFormat('ko-KR').format(num);
-
-  return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-900">
-      <div className="max-w-5xl mx-auto">
-        {/* 헤더 섹션 */}
-        <header className="mb-8 text-center">
-          <div className="inline-flex items-center justify-center p-2 px-4 mb-4 bg-red-100 text-red-600 rounded-full font-bold text-sm">
-            <AlertTriangle className="w-4 h-4 mr-2" />
-            교통안전 리포트
-          </div>
-          <h1 className="text-3xl md:text-4xl font-extrabold mb-2 tracking-tight">
-            도로 위 <span className="text-red-600">고령 운전자 사고</span>의 경고음
-          </h1>
-          <p className="text-slate-500 text-lg">최근 5년간 교통사고 통계 데이터 분석 (2020-2024)</p>
+    <div class="max-w-5xl mx-auto">
+        <!-- 헤더 섹션 -->
+        <header class="mb-8 text-center">
+            <div class="inline-flex items-center justify-center p-2 px-4 mb-4 bg-red-100 text-red-600 rounded-full font-bold text-sm">
+                ⚠️ 교통안전 리포트
+            </div>
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-2 tracking-tight">
+                도로 위 <span class="text-red-600">고령 운전자 사고</span>의 경고음
+            </h1>
+            <p class="text-slate-500 text-lg">최근 5년간 교통사고 통계 데이터 분석 (2020-2024)</p>
         </header>
 
-        {/* 주요 지표 요약 카드 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-            <div className="flex items-center mb-4">
-              <div className="p-2 bg-blue-50 rounded-lg mr-3">
-                <Car className="text-blue-600 w-6 h-6" />
-              </div>
-              <span className="font-semibold text-slate-600">전체 사고 추이</span>
+        <!-- 주요 지표 요약 카드 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center mb-4">
+                    <div class="p-2 bg-blue-50 rounded-lg mr-3">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
+                    </div>
+                    <span class="font-semibold text-slate-600">전체 사고 추이</span>
+                </div>
+                <div class="flex items-baseline space-x-2">
+                    <span class="text-3xl font-bold">6.3%</span>
+                    <span class="text-blue-600 flex items-center font-medium font-bold">↓ 감소</span>
+                </div>
+                <p class="text-sm text-slate-400 mt-1">2020년 대비 2024년 기준</p>
             </div>
-            <div className="flex items-baseline space-x-2">
-              <span className="text-3xl font-bold">6.3%</span>
-              <span className="text-blue-600 flex items-center font-medium">
-                <ArrowDownRight className="w-4 h-4" /> 감소
-              </span>
-            </div>
-            <p className="text-sm text-slate-400 mt-1">2020년 대비 2024년 기준</p>
-          </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-            <div className="flex items-center mb-4">
-              <div className="p-2 bg-red-50 rounded-lg mr-3">
-                <Users className="text-red-600 w-6 h-6" />
-              </div>
-              <span className="font-semibold text-slate-600">고령자 사고 증가</span>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center mb-4">
+                    <div class="p-2 bg-red-50 rounded-lg mr-3">
+                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <span class="font-semibold text-slate-600">고령자 사고 증가</span>
+                </div>
+                <div class="flex items-baseline space-x-2">
+                    <span class="text-3xl font-bold">36.3%</span>
+                    <span class="text-red-600 flex items-center font-medium font-bold">↑ 폭증</span>
+                </div>
+                <p class="text-sm text-slate-400 mt-1">최근 4년 사이 누적 증가율</p>
             </div>
-            <div className="flex items-baseline space-x-2">
-              <span className="text-3xl font-bold">36.3%</span>
-              <span className="text-red-600 flex items-center font-medium">
-                <ArrowUpRight className="w-4 h-4" /> 폭증
-              </span>
-            </div>
-            <p className="text-sm text-slate-400 mt-1">최근 4년 사이 누적 증가율</p>
-          </div>
 
-          <div className="bg-slate-900 p-6 rounded-2xl shadow-lg text-white">
-            <div className="flex items-center mb-4 text-slate-300">
-              <div className="p-2 bg-slate-800 rounded-lg mr-3">
-                <TrendingUp className="text-yellow-400 w-6 h-6" />
-              </div>
-              <span className="font-semibold">현재 사고 비중</span>
+            <div class="bg-slate-900 p-6 rounded-2xl shadow-lg text-white">
+                <div class="flex items-center mb-4 text-slate-300">
+                    <div class="p-2 bg-slate-800 rounded-lg mr-3 text-yellow-400">
+                        ⚡
+                    </div>
+                    <span class="font-semibold">현재 사고 비중</span>
+                </div>
+                <div class="flex items-baseline space-x-2">
+                    <span class="text-4xl font-black text-yellow-400">21.58%</span>
+                </div>
+                <p class="text-sm text-slate-400 mt-1 text-slate-300 italic">사고 5건 중 1건 이상 발생</p>
             </div>
-            <div className="flex items-baseline space-x-2">
-              <span className="text-4xl font-black text-yellow-400">21.58%</span>
-            </div>
-            <p className="text-sm text-slate-400 mt-1">사고 5건 중 1건 이상 발생</p>
-          </div>
         </div>
 
-        {/* 차트 섹션 */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* 전체 vs 고령자 건수 차트 */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-            <h3 className="text-lg font-bold mb-6 flex items-center">
-              <div className="w-1 h-5 bg-blue-500 mr-2 rounded-full"></div>
-              사고 발생 건수 추이 (전체 vs 고령)
-            </h3>
-            <div className="h-72">
-              <ResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={data}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                  <XAxis dataKey="year" axisLine={false} tickLine={false} />
-                  <YAxis yAxisId="left" hide />
-                  <YAxis yAxisId="right" hide />
-                  <Tooltip 
-                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                  />
-                  <Legend verticalAlign="top" align="right" height={36}/>
-                  <Area yAxisId="left" type="monotone" dataKey="total" fill="#eff6ff" stroke="#3b82f6" name="전체 사고" strokeWidth={3} />
-                  <Line yAxisId="left" type="monotone" dataKey="senior" stroke="#ef4444" name="고령자 사고" strokeWidth={4} dot={{ r: 6, fill: "#ef4444" }} />
-                </ComposedChart>
-              </ResponsiveContainer>
+        <!-- 차트 섹션 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- 추이 차트 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h3 class="text-lg font-bold mb-6 flex items-center">
+                    <span class="w-1 h-5 bg-blue-500 mr-2 rounded-full inline-block"></span>
+                    사고 발생 건수 추이 (전체 vs 고령)
+                </h3>
+                <div class="chart-container">
+                    <canvas id="trendChart"></canvas>
+                </div>
+                <p class="text-xs text-slate-400 mt-4 text-center">전체 사고는 감소하는 반면, 고령자 사고는 지속적으로 증가 중</p>
             </div>
-            <p className="text-xs text-slate-400 mt-4 text-center">전체 사고는 우하향하는 반면, 고령자 사고는 지속적으로 우상향 중</p>
-          </div>
 
-          {/* 비중 변화 바 차트 */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-            <h3 className="text-lg font-bold mb-6 flex items-center">
-              <div className="w-1 h-5 bg-red-500 mr-2 rounded-full"></div>
-              고령 운전자 사고 비중 (%)
-            </h3>
-            <div className="h-72">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={data}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                  <XAxis dataKey="year" axisLine={false} tickLine={false} />
-                  <YAxis axisLine={false} tickLine={false} domain={[0, 25]} />
-                  <Tooltip 
-                    cursor={{fill: '#f8fafc'}}
-                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                  />
-                  <Bar dataKey="ratio" name="비중(%)" radius={[8, 8, 0, 0]} barSize={40}>
-                    {data.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={index === data.length - 1 ? '#ef4444' : '#cbd5e1'} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
+            <!-- 비중 차트 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h3 class="text-lg font-bold mb-6 flex items-center">
+                    <span class="w-1 h-5 bg-red-500 mr-2 rounded-full inline-block"></span>
+                    고령 운전자 사고 비중 (%)
+                </h3>
+                <div class="chart-container">
+                    <canvas id="ratioChart"></canvas>
+                </div>
+                <div class="mt-4 flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <span class="text-sm font-medium text-slate-500">4년 만에 증가율</span>
+                    <span class="text-red-600 font-bold text-lg">+45.6%</span>
+                </div>
             </div>
-            <div className="mt-4 flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
-              <span className="text-sm font-medium text-slate-500">4년 만에 증가율</span>
-              <span className="text-red-600 font-bold text-lg">+45.6%</span>
-            </div>
-          </div>
         </div>
 
-        {/* 하단 요약 및 시사점 */}
-        <div className="mt-8 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-          <h3 className="text-lg font-bold mb-4">📊 핵심 시사점</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
-            <div className="flex items-start">
-              <div className="w-2 h-2 mt-1.5 bg-red-400 rounded-full mr-2 shrink-0"></div>
-              <p>전체 사고가 감소함에도 고령자 사고 비중이 급증하는 것은 인구 구조 변화를 넘어서는 적극적인 안전 대책이 필요함을 시사합니다.</p>
+        <!-- 하단 요약 -->
+        <div class="mt-8 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <h3 class="text-lg font-bold mb-4">📊 핵심 시사점</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600 leading-relaxed">
+                <div class="flex items-start">
+                    <div class="w-2 h-2 mt-1.5 bg-red-400 rounded-full mr-2 shrink-0"></div>
+                    <p>전체 사고가 감소함에도 고령자 사고 비중이 급증하는 것은 인구 구조 변화를 넘어서는 적극적인 안전 대책이 필요함을 시사합니다.</p>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-2 h-2 mt-1.5 bg-red-400 rounded-full mr-2 shrink-0"></div>
+                    <p>2024년 처음으로 비중 20%를 돌파하며 '교통사고 5건 중 1건'이 고령운전자 사고인 초고령 사회의 현실이 도로 위에서 나타나고 있습니다.</p>
+                </div>
             </div>
-            <div className="flex items-start">
-              <div className="w-2 h-2 mt-1.5 bg-red-400 rounded-full mr-2 shrink-0"></div>
-              <p>2024년 처음으로 비중 20%를 돌파하며 '교통사고 5건 중 1건'이 실버 사고인 초고령 사회의 현실이 도로 위에서 나타나고 있습니다.</p>
-            </div>
-          </div>
         </div>
-        
-        <footer className="mt-8 text-center text-slate-400 text-xs pb-8">
-          데이터 출처: 최근 5개년 교통사고 통계 분석 자료 | 제작: 인공지능 리포트 서비스
+
+        <footer class="mt-8 text-center text-slate-400 text-xs pb-8">
+            데이터 출처: 최근 5개년 교통사고 통계 분석 자료 | 제작: 인공지능 리포트 서비스
         </footer>
-      </div>
     </div>
-  );
-};
 
-export default App;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chartData = [
+                { year: '2020년', total: 209654, senior: 31072, ratio: 14.82 },
+                { year: '2021년', total: 203130, senior: 31841, ratio: 15.68 },
+                { year: '2022년', total: 196836, senior: 34652, ratio: 17.60 },
+                { year: '2023년', total: 198296, senior: 39614, ratio: 19.98 },
+                { year: '2024년', total: 196349, senior: 42369, ratio: 21.58 }
+            ];
+
+            const years = chartData.map(d => d.year);
+
+            // 1. 추이 차트 (Composed Chart 스타일)
+            const trendCtx = document.getElementById('trendChart').getContext('2d');
+            new Chart(trendCtx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [
+                        {
+                            label: '고령자 사고',
+                            data: chartData.map(d => d.senior),
+                            borderColor: '#ef4444',
+                            backgroundColor: '#ef4444',
+                            borderWidth: 4,
+                            pointRadius: 6,
+                            tension: 0.3,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '전체 사고',
+                            data: chartData.map(d => d.total),
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.3,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top', align: 'end' },
+                        tooltip: { backgroundColor: '#1e293b', padding: 12, cornerRadius: 8 }
+                    },
+                    scales: {
+                        y: { display: false },
+                        y1: { display: false },
+                        x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
+                    }
+                }
+            });
+
+            // 2. 비중 차트 (Bar Chart)
+            const ratioCtx = document.getElementById('ratioChart').getContext('2d');
+            new Chart(ratioCtx, {
+                type: 'bar',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: '비중 (%)',
+                        data: chartData.map(d => d.ratio),
+                        backgroundColor: chartData.map((_, i) => i === 4 ? '#ef4444' : '#cbd5e1'),
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { backgroundColor: '#1e293b', padding: 12, cornerRadius: 8 }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            max: 25,
+                            grid: { color: '#f1f5f9' },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
