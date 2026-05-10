@@ -119,12 +119,17 @@
         /* 비디오 컨테이너 스타일 - 세로형 영상 최적화 */
         .video-container {
             position: relative;
-            max-width: 800px;
+            max-width: 500px; /* 세로형 영상이므로 최대 너비를 줄여 비율 최적화 */
             margin: 0 auto;
             border-radius: 3rem;
             overflow: hidden;
             background: #000;
             box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.3);
+            /* 영상 비율 유지용 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 9 / 16; /* 세로형 영상 표준 비율 강제 */
         }
 
         /* 비디오 뒤 배경 블러 효과 */
@@ -132,25 +137,24 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
-            filter: blur(40px) brightness(0.6);
-            transform: scale(1.1);
+            filter: blur(60px) brightness(0.5);
+            transform: scale(1.2);
             z-index: 1;
         }
 
         .main-video {
             position: relative;
             z-index: 2;
-            width: auto;
+            width: 100%;
             height: 100%;
-            max-height: 70vh; /* 화면의 70%를 넘지 않도록 설정 */
-            margin: 0 auto;
+            object-fit: contain; /* 비율 유지하며 컨테이너 안에 꽉 차게 */
             display: block;
         }
 
         @media (max-width: 768px) {
             h1 { font-size: 3.25rem !important; }
             section { padding: 50px 20px; }
-            .main-video { max-height: 60vh; width: 100%; object-fit: contain; }
+            .video-container { max-width: 90%; }
         }
     </style>
 </head>
@@ -205,10 +209,10 @@
             <h2 class="text-5xl md:text-6xl font-black text-main mb-12 italic tracking-tight">About Me</h2>
             
             <div class="video-container">
-                <!-- 배경 블러용 비디오 -->
-                <video src="자기소개영상.mp4" muted loop autoplay class="video-bg-blur"></video>
+                <!-- 배경 블러용 비디오 (자동재생을 위해 muted, playsinline 필수) -->
+                <video src="자기소개영상.mp4" muted loop autoplay playsinline class="video-bg-blur"></video>
                 <!-- 메인 재생 비디오 -->
-                <video src="자기소개영상.mp4" controls autoplay muted loop class="main-video"></video>
+                <video src="자기소개영상.mp4" controls autoplay muted loop playsinline class="main-video"></video>
             </div>
             
             <div class="mt-10 max-w-2xl mx-auto">
