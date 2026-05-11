@@ -104,7 +104,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* 비디오 버튼 프레임 스타일 */
         .video-cta-frame {
             position: relative;
             width: 100%;
@@ -140,9 +139,10 @@
             transition: transform 0.3s ease;
         }
 
-        .video-cta-frame:hover .play-icon-wrapper {
-            transform: scale(1.1);
-            background: var(--accent-blue);
+        .data-point {
+            border-left: 3px solid var(--accent-blue);
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         @media (max-width: 768px) {
@@ -214,7 +214,7 @@
                     <div class="space-y-6">
                         <p class="text-lg leading-relaxed opacity-70">
                             <strong>"향상심"</strong>과 <strong>"개방성"</strong>을 키워드로 끊임없이 탐구하는 학생입니다. 
-                            단순히 주어진 지식을 수용하는 것을 넘어, 분석적이고 독창적인 시각으로 세상의 메커니즘을 이해하고자 노력합니다.
+                            분석적이고 독창적인 시각으로 세상의 메커니즘을 이해하고자 노력합니다.
                         </p>
 
                         <div class="grid grid-cols-2 gap-4">
@@ -235,21 +235,13 @@
                             </h4>
                             <p class="text-sm opacity-60 leading-relaxed pl-4 border-l-2 border-sky-100">
                                 뜨개질과 비즈공예를 통해 무에서 유를 창조하는 과정을 즐깁니다. 기성 도안을 따라가는 것에 그치지 않고, 
-                                <strong>직접 도안을 설계하여 창작</strong>하는 과정에서 성취감을 느낍니다. 또한 '스타워즈'와 같은 다양한 글로벌 콘텐츠를 
-                                심도 있게 파고들며 영어 실력을 자연스럽게 체득해왔습니다.
+                                <strong>직접 도안을 설계하여 창작</strong>하는 과정에서 성취감을 느낍니다.
                             </p>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-white/50 border border-black/5 rounded-full text-xs font-bold opacity-60">#호기심_많은</span>
-                            <span class="px-3 py-1 bg-white/50 border border-black/5 rounded-full text-xs font-bold opacity-60">#분석적인</span>
-                            <span class="px-3 py-1 bg-white/50 border border-black/5 rounded-full text-xs font-bold opacity-60">#탐색적인</span>
-                            <span class="px-3 py-1 bg-white/50 border border-black/5 rounded-full text-xs font-bold opacity-60">#사려깊은</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- 우측: 자기소개 영상 버튼 (수정됨) -->
+                <!-- 우측: 자기소개 영상 버튼 -->
                 <div class="flex justify-center md:justify-end">
                     <a href="./intro.mp4" target="_blank" class="video-cta-frame group">
                         <div class="play-icon-wrapper">
@@ -257,8 +249,6 @@
                         </div>
                         <span class="text-lg font-black text-main tracking-tight group-hover:text-sky-600 transition-colors">자기소개 영상 보러가기</span>
                         <p class="mt-2 text-xs font-bold opacity-30 uppercase tracking-widest italic">Watch Introduction Video</p>
-                        
-                        <!-- 장식적 요소 -->
                         <div class="absolute inset-0 border-2 border-dashed border-sky-500/10 rounded-[2.5rem] m-3 pointer-events-none"></div>
                     </a>
                 </div>
@@ -266,101 +256,146 @@
         </div>
     </section>
 
-    <!-- 1. 현대 심리학의 과학적 토대 -->
+    <!-- 1. 현대 심리학의 과학적 본질 -->
     <section id="intro">
-        <div class="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-20 items-center">
-            <div class="fade-in space-y-9">
-                <div class="badge">01. Academic Foundation</div>
-                <h2 class="text-4xl md:text-5xl font-black text-main leading-tight">가설 기반 분석에서<br>실제적 기전 규명으로</h2>
-                <div class="space-y-6 text-lg opacity-60 leading-relaxed">
-                    <p>
-                        심리학의 태동기부터 축적된 이론적 토대는 <strong>'인지 과학'</strong>의 도래와 함께 체계화되었습니다. 인간의 사고 과정을 정보 처리 관점에서 재정의하며 인지 기능의 실체를 정량화했습니다.
+        <div class="max-w-4xl mx-auto w-full">
+            <div class="fade-in space-y-12 text-center md:text-left">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-black/5 pb-8">
+                    <div>
+                        <div class="badge mb-4">01. Scientific Essence</div>
+                        <h2 class="text-4xl md:text-6xl font-black text-main leading-tight tracking-tighter">현대 심리학의<br><span class="text-sky-500 italic">과학적 본질</span></h2>
+                    </div>
+                    <p class="text-lg font-bold text-sky-600/60 italic max-w-sm">"심리학은 더 이상 관찰의 학문이 아닌, 데이터의 학문입니다."</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-x-16 gap-y-8">
+                    <div class="data-point">
+                        <p class="text-sm font-black text-sky-600 uppercase mb-2">Neural Connection</p>
+                        <p class="text-xl leading-relaxed opacity-70 font-medium">약 <strong>860억 개의 뉴런</strong>이 형성하는 수조 개의 시냅스 연결망이 인간의 사고와 행동을 제어하는 역동적 시스템의 토대가 됩니다.</p>
+                    </div>
+                    <div class="data-point">
+                        <p class="text-sm font-black text-sky-600 uppercase mb-2">Empirical Evidence</p>
+                        <p class="text-xl leading-relaxed opacity-70 font-medium"><strong>fMRI, EEG, PET</strong>와 같은 뇌 영상 기술은 인지 과제 수행 시 발생하는 대사 변화와 전기적 신호를 실시간 데이터로 시각화합니다.</p>
+                    </div>
+                </div>
+
+                <div class="p-10 bg-white/50 backdrop-blur-sm rounded-[3rem] border border-white/80 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-sky-500"></div>
+                    <p class="text-xl md:text-2xl font-black text-main italic leading-snug">
+                        "현대 심리학은 마음을 추상적 개념이 아닌, 감각 입력부터 행동 출력까지 이어지는 정교한 정보 처리 프로세스로 규정하며 엄밀한 실험 과학으로서 존재합니다."
                     </p>
                 </div>
-                <div class="grid grid-cols-2 gap-5">
-                    <div class="p-6 clean-card">
-                        <p class="text-3xl font-black text-sky-500 mb-1">86B+</p>
-                        <p class="text-[11px] font-bold opacity-50 uppercase tracking-wider">Neural Model</p>
-                    </div>
-                    <div class="p-6 clean-card">
-                        <p class="text-3xl font-black text-sky-500 mb-1">Empirical</p>
-                        <p class="text-[11px] font-bold opacity-50 uppercase tracking-wider">Methodology</p>
-                    </div>
-                </div>
-            </div>
-            <div class="fade-in relative" style="transition-delay: 0.2s;">
-                <div class="rounded-[2.75rem] overflow-hidden shadow-xl bg-white p-4">
-                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800" alt="Brain Visualization" class="rounded-[2.25rem] w-full object-cover aspect-video mb-4">
-                    <div class="p-5">
-                        <p class="font-bold text-main text-lg mb-1">정량적 데이터 기반의 인지 시각화</p>
-                        <p class="text-sm opacity-50">fMRI 영상을 활용하여 신경학적 상관관계를 도출하고 유의미한 인지 패턴을 분석합니다.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- 2. 기술 연계와 실질적 가치 -->
+    <!-- 2. 인지/뇌과학의 기술 융합과 미래 가치 -->
     <section id="convergence" class="bg-white/10">
         <div class="max-w-6xl mx-auto w-full">
-            <div class="mb-12 fade-in">
-                <div class="badge mb-4">02. Technological Integration</div>
-                <h2 class="text-4xl md:text-5xl font-black text-main">다학제적 접근을 통한 가치 창출</h2>
+            <div class="text-center mb-16 fade-in">
+                <div class="badge mb-4">02. Convergence & Future Value</div>
+                <h2 class="text-4xl md:text-5xl font-black text-main tracking-tight">기술 융합이 가져올 파괴적 혁신</h2>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="p-8 clean-card fade-in">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- AI Digital Therapeutics -->
+                <div class="p-10 clean-card fade-in flex flex-col h-full">
                     <div class="text-4xl mb-6">🤖</div>
-                    <h4 class="text-xl font-black mb-3">AI 기술 고도화</h4>
-                    <p class="text-sm opacity-60 mb-6">언어 처리 메커니즘 모델링을 통한 인터랙션 개선 및 디지털 치료제(DTx) 활용.</p>
+                    <h4 class="text-xl font-black mb-4">디지털 치료제 (DTx)</h4>
+                    <div class="flex-grow space-y-4 mb-8 text-sm opacity-60">
+                        <div class="flex justify-between border-b border-black/5 pb-2">
+                            <span>우울 증상 감소</span>
+                            <span class="font-black text-sky-500">▼ 51%</span>
+                        </div>
+                        <div class="flex justify-between border-b border-black/5 pb-2">
+                            <span>불안 증상 감소</span>
+                            <span class="font-black text-sky-500">▼ 25%</span>
+                        </div>
+                        <p>AI 챗봇 기반 치료는 대면 치료에 준하는 효과를 입증하며 심리 케어의 접근성을 혁명적으로 높입니다.</p>
+                    </div>
                 </div>
-                <div class="p-8 clean-card fade-in" style="transition-delay: 0.1s;">
+
+                <!-- BCI Technology -->
+                <div class="p-10 clean-card fade-in flex flex-col h-full" style="transition-delay: 0.1s;">
                     <div class="text-4xl mb-6">🧠</div>
-                    <h4 class="text-xl font-black mb-3">BCI 솔루션</h4>
-                    <p class="text-sm opacity-60 mb-6">신경 신호 정밀 디코딩을 통한 인터페이스 제어 및 HCI 차세대 표준 제시.</p>
+                    <h4 class="text-xl font-black mb-4">뇌-컴퓨터 인터페이스 (BCI)</h4>
+                    <div class="flex-grow space-y-4 mb-8 text-sm opacity-60">
+                        <p class="font-bold text-main italic">"신경 신호의 물리적 디코딩"</p>
+                        <p>사지 마비 환자가 생각만으로 로봇 팔을 제어하여 스스로 식사를 하거나 의사소통하는 신경 신호 처리 기술.</p>
+                        <div class="p-3 bg-sky-50 rounded-xl text-[11px] font-bold text-sky-600 uppercase tracking-widest text-center">Neural Decoding Enabled</div>
+                    </div>
                 </div>
-                <div class="p-8 clean-card fade-in" style="transition-delay: 0.2s;">
+
+                <!-- Precision Mental Health -->
+                <div class="p-10 clean-card fade-in flex flex-col h-full" style="transition-delay: 0.2s;">
                     <div class="text-4xl mb-6">💊</div>
-                    <h4 class="text-xl font-black mb-3">데이터 기반 케어</h4>
-                    <p class="text-sm opacity-60 mb-6">바이오타입 분석을 통한 맞춤형 중재 방안 도출 및 치료 반응률 향상 유도.</p>
+                    <h4 class="text-xl font-black mb-4">정밀 정신 건강</h4>
+                    <div class="flex-grow space-y-4 mb-8 text-sm opacity-60">
+                        <p>우울증을 <strong>6가지 바이오타입</strong>으로 분류하여, 특정 유형에서 항우울제 반응률을 <strong>86%</strong>까지 끌어올립니다.</p>
+                        <div class="h-24 w-full flex items-end gap-1 px-4">
+                            <div class="flex-1 bg-sky-200 h-1/3 rounded-t-sm"></div>
+                            <div class="flex-1 bg-sky-300 h-1/2 rounded-t-sm"></div>
+                            <div class="flex-1 bg-sky-500 h-full rounded-t-sm"></div>
+                            <div class="flex-1 bg-sky-200 h-1/4 rounded-t-sm"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-8 clean-card fade-in" style="transition-delay: 0.3s;">
-                    <div class="text-4xl mb-6">📈</div>
-                    <h4 class="text-xl font-black mb-3">응용 뇌과학 분석</h4>
-                    <p class="text-sm opacity-60 mb-6">영역별 활성화를 측정한 의사결정 추론 및 비즈니스 의사결정 데이터 지원.</p>
-                </div>
+            </div>
+
+            <div class="mt-12 p-8 clean-card text-center fade-in">
+                <p class="text-lg font-bold opacity-70">
+                    Insight: 뇌과학과 생성형 AI의 결합은 <span class="text-sky-600 underline underline-offset-4">인지 증강(Cognitive Augmentation)</span>을 실현하며 산업 전반의 혁신을 주도합니다.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- 3. 전문 연구 역량 -->
+    <!-- 3. 심리학 전공자의 연구 중심 미래 진로 -->
     <section id="future">
         <div class="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-20 items-center">
             <div class="fade-in space-y-9">
-                <div class="badge">03. Professional Expertise</div>
-                <h2 class="text-4xl md:text-5xl font-black text-main leading-tight">데이터와 인간 이해의<br>상호보완적 가치</h2>
+                <div class="badge">03. Career & Research Path</div>
+                <h2 class="text-4xl md:text-5xl font-black text-main leading-tight">기술에 '인간적 논리'를<br>부여하는 독보적 역할</h2>
+                
                 <div class="space-y-4">
-                    <div class="group p-6 rounded-2xl border border-black/5 hover:bg-white/70 transition-all cursor-default">
-                        <h5 class="font-black text-xl mb-1 group-hover:text-sky-600 transition">뇌과학 데이터 분석</h5>
-                        <p class="text-sm opacity-50 font-medium">신경 회로망 분석 및 생체 지표 도출 알고리즘 연구</p>
+                    <div class="group p-8 rounded-[2rem] border border-black/5 hover:bg-white/80 transition-all">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center text-xl">🔬</span>
+                            <h5 class="font-black text-xl group-hover:text-sky-600">신경과학 연구원</h5>
+                        </div>
+                        <p class="text-sm opacity-50 leading-relaxed italic">"뇌의 작동 원리와 호르몬이 행동에 미치는 영향을 분석하여 질환의 생체 지표(Biomarker)를 발견합니다."</p>
                     </div>
-                    <div class="group p-6 rounded-2xl border border-black/5 hover:bg-white/70 transition-all cursor-default">
-                        <h5 class="font-black text-xl mb-1 group-hover:text-sky-600 transition">인지 모델링 설계</h5>
-                        <p class="text-sm opacity-50 font-medium">머신러닝 기반 심리 상태 예측 및 사고 패턴 수치화</p>
+
+                    <div class="group p-8 rounded-[2rem] border border-black/5 hover:bg-white/80 transition-all">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center text-xl">💻</span>
+                            <h5 class="font-black text-xl group-hover:text-sky-600">HCI & UX 리서처</h5>
+                        </div>
+                        <p class="text-sm opacity-50 leading-relaxed italic">"주의 집중, 기억 부하 등 인지적 원리를 공학에 접목하여 정보 처리 구조에 최적화된 시스템을 설계합니다."</p>
+                    </div>
+
+                    <div class="group p-8 rounded-[2rem] border border-black/5 hover:bg-white/80 transition-all">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center text-xl">📊</span>
+                            <h5 class="font-black text-xl group-hover:text-sky-600">AI 데이터 사이언티스트</h5>
+                        </div>
+                        <p class="text-sm opacity-50 leading-relaxed italic">"언어심리학과 머신러닝을 융합하여 인간의 언어 패턴에서 심리 상태를 예측하고 LLM의 공감 능력을 개선합니다."</p>
                     </div>
                 </div>
             </div>
-            <div class="fade-in relative p-12 clean-card text-center">
-                   <p class="text-[11px] font-bold opacity-30 uppercase tracking-[0.2em] mb-4 text-sky-500">Analysis Matrix</p>
-                   <h3 class="text-3xl font-black mb-8 italic">Scientific Competency</h3>
-                   <div class="grid grid-cols-1 gap-4 text-left">
-                       <div class="p-5 bg-white rounded-xl shadow-sm border border-black/5 text-base font-medium">
-                           <span class="text-sky-500 font-bold mr-2">01.</span> 정량적 행동 분석 모델링
-                       </div>
-                       <div class="p-5 bg-white rounded-xl shadow-sm border border-black/5 text-base font-medium">
-                           <span class="text-sky-500 font-bold mr-2">02.</span> 인지 공학 및 인터랙션 최적화
-                       </div>
-                   </div>
+            
+            <div class="fade-in bg-white/50 backdrop-blur-xl p-12 rounded-[3rem] border border-white/80 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-sky-500/5 rounded-full blur-3xl"></div>
+                <h3 class="text-2xl font-black mb-8 italic text-main">Research Insight</h3>
+                <div class="space-y-8">
+                    <p class="text-lg leading-relaxed font-medium opacity-70">
+                        "미래의 심리학 연구직은 뇌과학, 컴퓨터공학, 윤리학이 결합된 <strong>다학제적 협력</strong>이 필수적입니다."
+                    </p>
+                    <div class="p-6 bg-sky-500 rounded-2xl text-white">
+                        <p class="text-sm font-bold opacity-80 mb-2 uppercase tracking-widest">Core Mission</p>
+                        <p class="text-xl font-black tracking-tight leading-snug">인간 지능의 본질을 규명하여,<br>기술에 가장 인간적인 논리를 설계하는 것.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
